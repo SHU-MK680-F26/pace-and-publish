@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Header Stripe Options</title>
+  <!-- Review page only: not part of the website. Each option is pure CSS so the chosen one
+       can be copied straight into website/style.css (.stripe). Palette from prd.md only. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&family=Oswald:wght@700&display=swap">
+  <style>
+    :root {
+      --black: #0C0C12; --white: #EAE6E0; --yellow: #F4C537; --orange: #F64C1C; --navy: #14286C;
+      --white-60: rgba(234, 230, 224, 0.62); --white-15: rgba(234, 230, 224, 0.15);
+      --font-head: "Oswald", "Arial Narrow", Arial, sans-serif;
+      --font-body: "Inter", "Helvetica Neue", Arial, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--black); color: var(--white); font-family: var(--font-body); font-weight: 500; }
+    .wrap { max-width: 1680px; margin: 0 auto; padding: 0 clamp(24px, 3.6vw, 64px); }
+    .intro { padding: 48px 0 8px; }
+    .intro h1 { font-family: var(--font-head); text-transform: uppercase; font-size: 40px; margin: 0 0 8px; }
+    .intro p { margin: 0; color: var(--white-60); max-width: 70ch; }
+
+    .option { padding: 48px 0 56px; border-bottom: 1px solid var(--white-15); }
+    .option-label { display: flex; align-items: baseline; gap: 14px; margin: 0 0 28px; }
+    .option-label b {
+      font-family: var(--font-head); font-size: 15px; letter-spacing: 0.06em; text-transform: uppercase;
+      background: var(--yellow); color: var(--black); padding: 4px 8px;
+    }
+    .option-label span { font-weight: 700; }
+    .option-label em { font-style: normal; color: var(--white-60); font-size: 14px; }
+    .demo-title {
+      font-family: var(--font-head); font-weight: 700; text-transform: uppercase;
+      font-size: clamp(56px, 6.4vw, 112px); line-height: 0.92; margin: 0;
+    }
+
+    /* ---------- Current (for comparison) ---------- */
+    .s-current { position: relative; height: 20px; margin-bottom: 28px; }
+    .s-current::before, .s-current::after {
+      content: ""; position: absolute; left: 0; right: 0; background: var(--orange);
+      clip-path: polygon(0 0, 100% 0, calc(100% - 14px) 100%, 0 100%);
+    }
+    .s-current::before { top: 0; height: 9px; }
+    .s-current::after { top: 12px; height: 8px; right: 16px; }
+
+    /* ---------- A: Slanted lead-in ----------
+       One heavy orange bar whose LEFT edge is cut on a slant, with a short yellow
+       parallelogram leading into it. Square right end, so it reads as motion into the page. */
+    .s-a { position: relative; height: 16px; margin-bottom: 28px; }
+    .s-a::before {
+      content: ""; position: absolute; left: 0; top: 0; width: 64px; height: 16px; background: var(--yellow);
+      clip-path: polygon(16px 0, 100% 0, calc(100% - 16px) 100%, 0 100%);
+    }
+    .s-a::after {
+      content: ""; position: absolute; left: 56px; right: 0; top: 0; height: 16px; background: var(--orange);
+      clip-path: polygon(16px 0, 100% 0, 100% 100%, 0 100%);
+    }
+
+    /* ---------- B: Starting line ----------
+       A two-row checkered block (the start/finish line) followed by one orange bar. */
+    .s-b { display: flex; align-items: stretch; height: 16px; margin-bottom: 28px; }
+    .s-b .checks {
+      flex: 0 0 128px; background-color: var(--white);
+      background-image:
+        linear-gradient(45deg, var(--black) 25%, transparent 25%, transparent 75%, var(--black) 75%),
+        linear-gradient(45deg, var(--black) 25%, transparent 25%, transparent 75%, var(--black) 75%);
+      background-size: 16px 16px; background-position: 0 0, 8px 8px;
+    }
+    .s-b .bar { flex: 1; background: var(--orange); margin-left: 10px; }
+
+    /* ---------- C: Starting grid ----------
+       Staggered orange slots, like the painted grid boxes on a starting straight,
+       ending in a solid bar. */
+    .s-c { position: relative; height: 22px; margin-bottom: 28px; }
+    .s-c .slot { position: absolute; width: 26px; height: 8px; background: var(--orange); }
+    .s-c .bar { position: absolute; left: 252px; right: 0; top: 7px; height: 8px; background: var(--orange); }
+
+    /* ---------- D: Pace band ----------
+       Two stacked bars, both with slanted LEFT edges, the lower one yellow and set in,
+       so the pair steps forward like overlapping speed lines. */
+    .s-d { position: relative; height: 22px; margin-bottom: 28px; }
+    .s-d::before, .s-d::after { content: ""; position: absolute; right: 0; }
+    .s-d::before { left: 0; top: 0; height: 12px; background: var(--orange);
+      clip-path: polygon(12px 0, 100% 0, 100% 100%, 0 100%); }
+    .s-d::after { left: 40px; top: 15px; height: 7px; background: var(--yellow);
+      clip-path: polygon(7px 0, 100% 0, 100% 100%, 0 100%); }
+
+    /* ---------- E: Start line + slant ----------
+       Checkered block cut on a slant on both sides, then an orange bar that picks up the
+       same angle. Combines both suggestions. */
+    .s-e { display: flex; height: 18px; margin-bottom: 28px; }
+    .s-e .checks {
+      flex: 0 0 150px; background-color: var(--white);
+      background-image:
+        linear-gradient(45deg, var(--black) 25%, transparent 25%, transparent 75%, var(--black) 75%),
+        linear-gradient(45deg, var(--black) 25%, transparent 25%, transparent 75%, var(--black) 75%);
+      background-size: 18px 18px; background-position: 0 0, 9px 9px;
+      clip-path: polygon(18px 0, 100% 0, calc(100% - 18px) 100%, 0 100%);
+    }
+    .s-e .bar { flex: 1; background: var(--orange); margin-left: -6px;
+      clip-path: polygon(18px 0, 100% 0, 100% 100%, 0 100%); }
+
+    /* =========================================================
+       ROUND 2: E (slanted checkered start) + D (orange over yellow),
+       slanted on BOTH ends. All pieces share one 45-degree cut, so
+       stacked pieces line up as if sliced by a single blade.
+       ========================================================= */
+    .round-head { padding: 40px 0 0; }
+    .round-head h2 { font-family: var(--font-head); text-transform: uppercase; font-size: 28px; margin: 0; color: var(--yellow); }
+    .round-head p { margin: 6px 0 0; color: var(--white-60); }
+
+    .combo { position: relative; margin-bottom: 28px; }
+    .combo > span { position: absolute; display: block; }
+    /* Forward lean "/": top edge shifted right by --s */
+    .combo .pf { clip-path: polygon(var(--s) 0, 100% 0, calc(100% - var(--s)) 100%, 0 100%); }
+    /* Back lean "\": bottom edge shifted right by --s */
+    .combo .pb { clip-path: polygon(0 0, calc(100% - var(--s)) 0, 100% 100%, var(--s) 100%); }
+    .combo .o { background: var(--orange); }
+    .combo .y { background: var(--yellow); }
+    .combo .chk {
+      background-color: var(--white);
+      background-image:
+        linear-gradient(45deg, var(--black) 25%, transparent 25%, transparent 75%, var(--black) 75%),
+        linear-gradient(45deg, var(--black) 25%, transparent 25%, transparent 75%, var(--black) 75%);
+      background-size: var(--c) var(--c); background-position: 0 0, calc(var(--c) / 2) calc(var(--c) / 2);
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="intro">
+      <h1>Header stripe options</h1>
+      <p>Each option is shown above a page title the way it would appear on the site. Only the Pace &amp; Publish palette is used, and every option is plain CSS.</p>
+    </div>
+
+    <div class="round-head">
+      <h2>Round 3: Option H, revised</h2>
+      <p>Two rows of checks, straight left end; the inner and right-hand cuts stay slanted.</p>
+    </div>
+
+    <section class="option">
+      <p class="option-label"><b>Option H2</b><span>Staggered finish, two-row checks</span><em>Chosen for the site</em></p>
+      <div class="combo" style="height:24px" aria-hidden="true">
+        <span class="chk" style="--c:24px;left:0;top:0;width:144px;height:24px;clip-path:polygon(0 0,100% 0,calc(100% - 24px) 100%,0 100%)"></span>
+        <span class="o pf" style="--s:13px;left:141px;right:0;top:0;height:13px"></span>
+        <span class="y pf" style="--s:8px;left:130px;right:34%;top:16px;height:8px"></span>
+      </div>
+      <h2 class="demo-title">Terminology</h2>
+    </section>
+
+    <div class="round-head">
+      <h2>Round 2: E + D, slanted on both ends</h2>
+      <p>Checkered start from E, orange-over-yellow from D. Every edge shares one 45-degree cut.</p>
+    </div>
+
+    <section class="option">
+      <p class="option-label"><b>Option F</b><span>Stacked start</span><em>Full-height checks, then orange over yellow; both bars cut on each end</em></p>
+      <div class="combo" style="height:24px" aria-hidden="true">
+        <span class="chk pf" style="--s:24px;--c:12px;left:0;top:0;width:150px;height:24px"></span>
+        <span class="o pf" style="--s:13px;left:147px;right:0;top:0;height:13px"></span>
+        <span class="y pf" style="--s:8px;left:136px;right:16px;top:16px;height:8px"></span>
+      </div>
+      <h2 class="demo-title">Terminology</h2>
+    </section>
+
+    <section class="option">
+      <p class="option-label"><b>Option G</b><span>Checks on the top lane</span><em>Checks lead the orange bar; yellow runs the full length underneath</em></p>
+      <div class="combo" style="height:24px" aria-hidden="true">
+        <span class="chk pf" style="--s:13px;--c:13px;left:11px;top:0;width:150px;height:13px"></span>
+        <span class="o pf" style="--s:13px;left:158px;right:0;top:0;height:13px"></span>
+        <span class="y pf" style="--s:8px;left:0;right:16px;top:16px;height:8px"></span>
+      </div>
+      <h2 class="demo-title">Terminology</h2>
+    </section>
+
+    <section class="option">
+      <p class="option-label"><b>Option H</b><span>Staggered finish</span><em>Like F, but the yellow bar stops short, so the two bars finish at different points</em></p>
+      <div class="combo" style="height:24px" aria-hidden="true">
+        <span class="chk pf" style="--s:24px;--c:12px;left:0;top:0;width:150px;height:24px"></span>
+        <span class="o pf" style="--s:13px;left:147px;right:0;top:0;height:13px"></span>
+        <span class="y pf" style="--s:8px;left:136px;right:34%;top:16px;height:8px"></span>
+      </div>
+      <h2 class="demo-title">Terminology</h2>
+    </section>
+
+    <section class="option">
+      <p class="option-label"><b>Option I</b><span>Bold and pinstripe</span><em>Heavier orange bar with a short, thin yellow chip trailing the checks</em></p>
+      <div class="combo" style="height:22px" aria-hidden="true">
+        <span class="chk pf" style="--s:22px;--c:11px;left:0;top:0;width:132px;height:22px"></span>
+        <span class="o pf" style="--s:14px;left:128px;right:0;top:0;height:14px"></span>
+        <span class="y pf" style="--s:4px;left:120px;width:280px;top:18px;height:4px"></span>
+      </div>
+      <h2 class="demo-title">Terminology</h2>
+    </section>
+
+    <section class="option">
+      <p class="option-label"><b>Option J</b><span>Reverse lean</span><em>F with every cut leaning the other way</em></p>
+      <div class="combo" style="height:24px" aria-hidden="true">
+        <span class="chk pb" style="--s:24px;--c:12px;left:0;top:0;width:150px;height:24px"></span>
+        <span class="o pb" style="--s:13px;left:136px;right:11px;top:0;height:13px"></span>
+        <span class="y pb" style="--s:8px;left:152px;right:0;top:16px;height:8px"></span>
+      </div>
+      <h2 class="demo-title">Terminology</h2>
+    </section>
+
+    <div class="round-head">
+      <h2>Round 1</h2>
+    </div>
+
+    <section class="option">
+      <p class="option-label"><b>Current</b><span>Double stripe, slanted right end</span><em>For comparison</em></p>
+      <div class="s-current"></div>
+      <h2 class="demo-title">Terminology</h2>
+    </section>
+
+    <section class="option">
+      <p class="option-label"><b>Option A</b><span>Slanted lead-in</span><em>One heavy bar cut on the left, led by a yellow chip</em></p>
+      <div class="s-a"></div>
+      <h2 class="demo-title">Terminology</h2>
+    </section>
+
+    <section class="option">
+      <p class="option-label"><b>Option B</b><span>Starting line</span><em>Checkered start/finish block, then one orange bar</em></p>
+      <div class="s-b"><div class="checks"></div><div class="bar"></div></div>
+      <h2 class="demo-title">Terminology</h2>
+    </section>
+
+    <section class="option">
+      <p class="option-label"><b>Option C</b><span>Starting grid</span><em>Staggered grid slots that run into a bar</em></p>
+      <div class="s-c" aria-hidden="true">
+        <span class="slot" style="left:0;top:0"></span>
+        <span class="slot" style="left:30px;top:14px"></span>
+        <span class="slot" style="left:60px;top:0"></span>
+        <span class="slot" style="left:90px;top:14px"></span>
+        <span class="slot" style="left:120px;top:0"></span>
+        <span class="slot" style="left:150px;top:14px"></span>
+        <span class="slot" style="left:180px;top:0"></span>
+        <span class="slot" style="left:210px;top:14px"></span>
+        <span class="bar"></span>
+      </div>
+      <h2 class="demo-title">Terminology</h2>
+    </section>
+
+    <section class="option">
+      <p class="option-label"><b>Option D</b><span>Pace band</span><em>Orange over yellow, both cut on the left</em></p>
+      <div class="s-d"></div>
+      <h2 class="demo-title">Terminology</h2>
+    </section>
+
+    <section class="option">
+      <p class="option-label"><b>Option E</b><span>Start line + slant</span><em>Slanted checkered block flowing into a slanted bar</em></p>
+      <div class="s-e"><div class="checks"></div><div class="bar"></div></div>
+      <h2 class="demo-title">Terminology</h2>
+    </section>
+  </div>
+</body>
+</html>

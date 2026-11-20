@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About · Pace &amp; Publish</title>
+<meta name="description" content="About Pace &amp; Publish, a student project for a fictional motorsport news brand covering F1, MotoGP, NASCAR and WEC.">
+<script>
+  /* Montserrat from Google Fonts (PRD 4). Only requested when the browser is online, so the site
+     opens offline with a clean console and falls back to a system sans-serif. */
+  if (navigator.onLine !== false) {
+    document.write('<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap">');
+  }
+</script>
+<link rel="icon" href="images/logo-icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/style.css?v=car-3">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="wordmark logo" href="index.html" aria-label="Pace &amp; Publish home"><svg class="logo-g" viewBox="0 0 300 48" width="200" height="32" aria-hidden="true" focusable="false"><defs><clipPath id="logo-badge"><rect x="0" y="0" width="76" height="48"/></clipPath></defs><rect x="0" y="0" width="76" height="48" fill="#7C5CFF"/><g clip-path="url(#logo-badge)"><g class="g-lines"><rect x="2" y="16" width="22" height="3" fill="#F4F2FA" opacity=".9"/><rect x="8" y="23" width="16" height="3" fill="#F4F2FA" opacity=".7"/><rect x="14" y="30" width="10" height="3" fill="#F4F2FA" opacity=".5"/></g><g class="g-car"><g transform="translate(18,12) scale(0.46)"><polygon points="8,24 16,17 34,14 46,10 58,10 64,15 84,19 112,25 116,30 8,30" fill="#F4F2FA"/><rect x="2" y="6" width="16" height="4" fill="#F4F2FA"/><rect x="6" y="9" width="4" height="15" fill="#F4F2FA"/><circle cx="26" cy="31" r="10" fill="#14121C" stroke="#F4F2FA" stroke-width="3"/><circle cx="92" cy="32" r="8.5" fill="#14121C" stroke="#F4F2FA" stroke-width="3"/></g></g></g><text x="88" y="21" font-family="Montserrat, system-ui, sans-serif" font-weight="800" font-size="18" letter-spacing="2" fill="#F4F2FA">PACE &amp;</text><text x="88" y="42" font-family="Montserrat, system-ui, sans-serif" font-weight="800" font-size="18" letter-spacing="2" fill="#F4F2FA">PUBLISH</text></svg></a>
+    <nav class="site-nav" aria-label="Main menu">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="planner.html">Race weekend planner</a></li>
+        <li><a href="calendar.html">Race calendar</a></li>
+        <li><a href="news.html">News</a></li>
+        <li><a href="about.html" aria-current="page">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="page-head has-photo">
+      <img src="images/photos/motogp-phillip-island-2007.jpg" alt="MotoGP riders racing at Phillip Island during the 2007 Australian motorcycle Grand Prix" width="2000" height="1200">
+      <div class="ph-shade" aria-hidden="true"></div>
+      <div class="ph-text">
+      <p class="kicker">About</p>
+      <h1>Motorsport news for fans of more than one series</h1>
+      <hr class="rule">
+      </div>
+      <p class="photo-credit">Photo: MotoGP, 2007 Australian motorcycle Grand Prix · Tom Reynolds, CC BY 2.0, via Wikimedia Commons</p>
+    </div>
+
+    <div class="about-grid">
+      <div>
+        <h2>Who we are</h2>
+        <p>Pace &amp; Publish is a motorsport news brand on Instagram (@paceandpublish). This website is its home on the web: news, race results and the race calendar for four series together, so you don't need several apps and sites.</p>
+
+        <h2>Who it's for</h2>
+        <p>Fans who follow more than one racing series. You might check in first thing in the morning after sleeping through a race or session, after work for a quick update on the day, or at the start of a race week to see what's racing and when. Most of you read us on a phone.</p>
+
+        <h2>The four series we cover</h2>
+        <ul class="series-list">
+          <li><span class="tag">F1</span> Formula 1 · source: formula1.com</li>
+          <li><span class="tag">MotoGP</span> MotoGP · source: motogp.com</li>
+          <li><span class="tag">NASCAR</span> NASCAR · source: nascar.com</li>
+          <li><span class="tag">WEC</span> FIA World Endurance Championship · source: fiawec.com</li>
+        </ul>
+
+        <h2>Where our facts come from</h2>
+        <p>Only the four official series sites above. Every news item and race on this site names its source. If a fact isn't confirmed on an official site, it isn't on Pace &amp; Publish.</p>
+      </div>
+
+      <aside>
+        <div class="rules-box" id="our-rules">
+          <p class="kicker">Our rules</p>
+          <p class="rules-line">Confirmed facts only · No predictions · No favorites.</p>
+        </div>
+        <p style="margin-top:24px"><a class="btn" href="https://www.instagram.com/paceandpublish/" target="_blank" rel="noopener noreferrer">Follow @paceandpublish on Instagram ↗</a></p>
+        <h2 id="photo-credits">Photo credits</h2>
+        <p class="small muted">Our series photos are free-license photos from Wikimedia Commons. They show each series in general, not the news events on this site.</p>
+        <ul class="credits" id="credits-list"></ul>
+        <div class="notice" id="student-project">
+          <p style="margin:0">A student project for a fictional brand at Sacred Heart University.</p>
+        </div>
+      </aside>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p class="student-note">A student project for a fictional brand at Sacred Heart University.</p>
+    <p>Pace &amp; Publish: F1, MotoGP, NASCAR and WEC news in one place. Facts come only from formula1.com, motogp.com, nascar.com and fiawec.com.</p>
+    <p class="small">Series photos are free-license photos from Wikimedia Commons; credits are on the <a href="about.html#photo-credits">About</a> page.</p>
+  </div>
+</footer>
+<script src="data/photos.js"></script>
+<script src="js/common.js?v=car-3"></script>
+<script src="js/about.js?v=car-3"></script>
+</body>
+</html>

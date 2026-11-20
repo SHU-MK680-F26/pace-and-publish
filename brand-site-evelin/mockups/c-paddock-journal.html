@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mockup C · Paddock Journal | Pace & Publish</title>
+<link rel="stylesheet" href="mockup-base.css">
+<style>
+  /* ---------- C: PADDOCK JOURNAL — luxury editorial ---------- */
+  .nav { position: absolute; z-index: 20; top: 61px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 6px; padding: 6px; background: rgba(10,11,13,.55); backdrop-filter: blur(14px); border: 1px solid rgba(244,244,242,.14); }
+  .nav .logo { padding: 10px 20px 8px; font: 700 20px var(--display); letter-spacing: .08em; text-transform: uppercase; border-right: 1px solid rgba(244,244,242,.14); margin-right: 6px; }
+  .nav a { padding: 10px 16px 8px; font: 500 14px var(--sans); color: var(--metal-2); }
+  .nav a.on { color: var(--white); background: rgba(244,244,242,.08); }
+  .nav .cta { background: var(--white); color: var(--carbon); font-weight: 600; margin-left: 6px; }
+
+  .hero { position: relative; height: 100vh; min-height: 760px; overflow: hidden; }
+  .hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 55%; }
+  .hero::before { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(0deg, rgba(10,11,13,.92) 0%, rgba(10,11,13,0) 50%), linear-gradient(180deg, rgba(10,11,13,.55) 0%, rgba(10,11,13,0) 25%); }
+  .hero-copy { position: absolute; z-index: 2; left: var(--pad); right: var(--pad); bottom: 64px; display: grid; grid-template-columns: 1fr 380px; gap: 60px; align-items: end; }
+  .kicker { font: 500 14px var(--sans); letter-spacing: .24em; text-transform: uppercase; color: var(--metal-2); margin-bottom: 20px; display: flex; gap: 14px; align-items: center; }
+  .kicker::before { content: ""; width: 60px; height: 1px; background: var(--metal-2); }
+  .hero h1 { font: 300 96px/1 var(--sans); letter-spacing: -.035em; margin: 0; }
+  .hero h1 b { font-weight: 700; }
+  .aside { border-left: 1px solid rgba(244,244,242,.3); padding-left: 26px; }
+  .aside p { margin: 0 0 22px; color: #D7DADF; line-height: 1.6; }
+  .link { display: inline-flex; gap: 12px; align-items: center; font: 600 14px var(--sans); letter-spacing: .14em; text-transform: uppercase; border-bottom: 1px solid var(--red); padding-bottom: 6px; }
+  .hero .credit { position: absolute; z-index: 2; right: var(--pad); top: 140px; }
+
+  /* Chapter spreads */
+  .chapter { display: grid; grid-template-columns: 1fr 1fr; min-height: 720px; border-top: 1px solid var(--line); }
+  .chapter.flip .ch-img { order: 2; }
+  .ch-img { position: relative; overflow: hidden; }
+  .ch-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 1s; }
+  .chapter:hover .ch-img img { transform: scale(1.03); }
+  .ch-img .gap { height: 100%; }
+  .ch-img .credit { position: absolute; left: 18px; bottom: 14px; background: rgba(10,11,13,.6); padding: 4px 8px; }
+  .ch-txt { padding: 90px clamp(40px, 6vw, 110px); display: flex; flex-direction: column; justify-content: center; position: relative; }
+  .ch-num { position: absolute; top: 40px; right: 50px; font: 700 200px/.8 var(--display); color: transparent; -webkit-text-stroke: 1px var(--line); }
+  .ch-label { font: 500 13px var(--sans); letter-spacing: .24em; text-transform: uppercase; color: var(--red-text); margin-bottom: 18px; }
+  .ch-txt h2 { font: 300 58px/1.04 var(--sans); letter-spacing: -.03em; margin: 0 0 22px; }
+  .ch-txt h2 b { font-weight: 700; }
+  .ch-txt p { color: var(--metal-2); line-height: 1.7; max-width: 44ch; margin: 0 0 28px; }
+  .meta { display: flex; gap: 14px; align-items: center; margin-bottom: 22px; }
+  .list { border-top: 1px solid var(--line); margin-top: 10px; }
+  .list a { display: grid; grid-template-columns: 70px 1fr; padding: 16px 0; border-bottom: 1px solid var(--line); font: 500 17px var(--sans); }
+  .list a span { color: var(--metal); font: 700 14px var(--display); letter-spacing: .14em; padding-top: 3px; }
+
+  /* Horizontal series rail */
+  .rail-wrap { padding: 100px 0 100px var(--pad); border-top: 1px solid var(--line); }
+  .rail-head { display: flex; justify-content: space-between; align-items: end; padding-right: var(--pad); margin-bottom: 34px; }
+  .rail-head h2 { font: 300 58px/1 var(--sans); letter-spacing: -.03em; margin: 0; }
+  .rail-head h2 b { font-weight: 700; }
+  .rail { display: grid; grid-auto-flow: column; grid-auto-columns: 34%; gap: 24px; overflow-x: auto; padding-right: var(--pad); scrollbar-width: none; }
+  .card { position: relative; height: 460px; overflow: hidden; background: var(--carbon-2); }
+  .card img { width: 100%; height: 100%; object-fit: cover; }
+  .card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(10,11,13,.9), rgba(10,11,13,0) 55%); }
+  .card div { position: absolute; z-index: 2; left: 26px; right: 26px; bottom: 24px; }
+  .card h3 { font: 700 34px var(--sans); letter-spacing: -.02em; margin: 6px 0; }
+  .card p { margin: 0; color: var(--metal-2); font-size: 14px; }
+  .card .gap { height: 100%; }
+
+  /* Circuit chapter */
+  .circ { display: grid; grid-template-columns: 1.4fr 1fr; border-top: 1px solid var(--line); }
+  .circ .map { padding: 70px; display: flex; align-items: center; background: radial-gradient(60% 60% at 50% 50%, rgba(244,244,242,.06), transparent 70%); }
+  .circ .map img { width: 100%; filter: invert(1) hue-rotate(180deg); mix-blend-mode: screen; }
+  .circ .data { padding: 90px 70px; border-left: 1px solid var(--line); }
+  .tabs { display: flex; gap: 22px; margin-bottom: 40px; font: 500 15px var(--sans); color: var(--metal); }
+  .tabs .on { color: var(--white); border-bottom: 1px solid var(--red); padding-bottom: 6px; }
+  .big { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 30px 0; }
+  .big dt { font: 500 12px var(--sans); letter-spacing: .2em; text-transform: uppercase; color: var(--metal); }
+  .big dd { margin: 6px 0 0; font: 300 56px/1 var(--sans); letter-spacing: -.03em; }
+  footer { padding: 40px var(--pad); color: var(--metal); font-size: 13px; border-top: 1px solid var(--line); }
+</style>
+</head>
+<body>
+<div class="mock-banner"><span>MOCKUP C · "PADDOCK JOURNAL" — luxury editorial. Design comp only. Photos are <u>unapproved</u> Wikimedia Commons candidates.</span><a href="index.html">All mockups</a></div>
+
+<nav class="nav"><span class="logo">Pace &amp; Publish</span><a class="on">Home</a><a>News</a><a>Circuits</a><a>Calendar</a><a>About</a><a class="cta">My Dashboard</a></nav>
+
+<section class="hero">
+  <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/c/ca/2024_6_Hours_of_Spa-Francorchamps_%28DSC08757%29.jpg/1920px-2024_6_Hours_of_Spa-Francorchamps_%28DSC08757%29.jpg" alt="Hypercar field after the start of the 2024 6 Hours of Spa">
+  <p class="credit"><span class="candidate">Candidate</span>2024 6 Hours of Spa · MarcelX42 · CC BY-SA 4.0</p>
+  <div class="hero-copy">
+    <div><div class="kicker">Issue · November 2026</div><h1>Every series.<br><b>One feed.</b></h1></div>
+    <div class="aside"><p>F1, MotoGP, NASCAR and WEC, gathered in one place. Verified on each series' official site and written in our own words.</p><a class="link">Read the latest →</a></div>
+  </div>
+</section>
+
+<section class="chapter">
+  <div class="ch-img"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cf/2024-08-25_Motorsport%2C_Formel_1%2C_Gro%C3%9Fer_Preis_der_Niederlande_2024_STP_3829_by_Stepro.jpg/1920px-2024-08-25_Motorsport%2C_Formel_1%2C_Gro%C3%9Fer_Preis_der_Niederlande_2024_STP_3829_by_Stepro.jpg" alt="F1 car throwing sparks" style="object-position:40% 50%"><p class="credit"><span class="candidate">Candidate</span>File photo · Steffen Prößdorf · CC BY-SA 4.0</p></div>
+  <div class="ch-txt"><span class="ch-num">01</span><div class="ch-label">Chapter 01 · Formula 1</div>
+    <div class="meta"><span class="tag">F1</span><span class="date">Nov 9, 2026</span></div>
+    <h2>Five drivers did not finish the <b>Mexico City Grand Prix</b></h2>
+    <p>This F1 race recap from the Mexico City Grand Prix (November 1) starts with five drivers who did not finish, two of them after 5 laps.</p>
+    <div class="list"><a><span>02</span>Verstappen, Hamilton and Antonelli on the Mexico City podium</a><a><span>03</span>Race week: F1 heads to Interlagos</a></div>
+  </div>
+</section>
+
+<section class="chapter flip">
+  <div class="ch-img"><div class="gap">Photo needed<small>MotoGP rider leaning into a corner, 2025–2026 season</small></div></div>
+  <div class="ch-txt"><span class="ch-num">02</span><div class="ch-label">Chapter 02 · MotoGP</div>
+    <div class="meta"><span class="tag">MotoGP</span><span class="date">Nov 8, 2026</span></div>
+    <h2>Two riders named Marquez share the <b>Grand Prix of Malaysia</b> podium</h2>
+    <p>MotoGP race results from the Petronas Grand Prix of Malaysia at Petronas Sepang International Circuit on November 1.</p>
+    <a class="link">MotoGP coverage →</a>
+  </div>
+</section>
+
+<section class="rail-wrap">
+  <div class="rail-head"><h2>The <b>series</b></h2><span class="date">Scroll →</span></div>
+  <div class="rail">
+    <a class="card"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/9/92/2024-08-25_Motorsport%2C_Formel_1%2C_Gro%C3%9Fer_Preis_der_Niederlande_2024_STP_3908_by_Stepro.jpg/1920px-2024-08-25_Motorsport%2C_Formel_1%2C_Gro%C3%9Fer_Preis_der_Niederlande_2024_STP_3908_by_Stepro.jpg" alt="F1 car"><div><span class="date">01</span><h3>Formula 1</h3><p>8 verified stories</p></div></a>
+    <a class="card"><div class="gap">Photo needed<small>MotoGP</small></div></a>
+    <a class="card"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/2/22/Restart_bristol_%2852866799028%29.jpg/1920px-Restart_bristol_%2852866799028%29.jpg" alt="NASCAR restart"><div><span class="date">03</span><h3>NASCAR</h3><p>Coverage pending verification</p></div></a>
+    <a class="card"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a9/2024-08-25_Motorsport%2C_Formel_1%2C_Gro%C3%9Fer_Preis_der_Niederlande_2024_STP_3619_by_Stepro.jpg/1920px-2024-08-25_Motorsport%2C_Formel_1%2C_Gro%C3%9Fer_Preis_der_Niederlande_2024_STP_3619_by_Stepro.jpg" alt="Tyres"><div><span class="date">04</span><h3>WEC</h3><p>3 verified stories · photo to swap for a Hypercar shot</p></div></a>
+  </div>
+</section>
+
+<section class="circ">
+  <div class="map"><img src="../assets/images/circuits/silverstone-track.svg" alt="Silverstone layout"></div>
+  <div class="data"><div class="ch-label">Chapter 03 · Explore the circuits</div>
+    <div class="tabs"><span>Monaco</span><span class="on">Silverstone</span><span>Suzuka</span></div>
+    <h2 style="font:300 58px/1 var(--sans);letter-spacing:-.03em;margin:0">Silverstone <b style="font-weight:700">Circuit</b></h2>
+    <dl class="big"><div><dt>Length</dt><dd>5.891</dd></div><div><dt>Turns</dt><dd>18</dd></div><div><dt>Laps</dt><dd>52</dd></div></dl>
+    <p style="color:var(--metal-2);line-height:1.7;max-width:44ch">Silverstone hosted the first-ever round of the Formula 1 World Championship on May 13, 1950.</p>
+  </div>
+</section>
+<footer>Mockup C · Hero © MarcelX42; F1 and tyre photos © Steffen Prößdorf; Bristol © Zach Catanzareti. All via Wikimedia Commons, candidates only.</footer>
+</body>
+</html>

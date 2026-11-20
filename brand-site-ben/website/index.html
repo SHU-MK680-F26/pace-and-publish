@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pace &amp; Publish | Motorsport Starter Guide</title>
+  <meta name="description" content="A starter guide to motorsport for new fans: terminology, tactics, racetracks, and famous historical races across F1, MotoGP, WEC, IndyCar, and NASCAR. A student project for a fictional brand.">
+
+  <!-- Fonts (prd.md section 7). Falls back to system fonts when offline. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&family=Oswald:wght@700&display=swap">
+
+  <!-- Leaflet 1.9.4, saved locally so the map code works without a CDN -->
+  <link rel="stylesheet" href="vendor/leaflet/leaflet.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="#home">Pace <span>&amp;</span> Publish</a>
+      <nav class="main-nav" aria-label="Main">
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#terminology">Terminology</a></li>
+          <li><a href="#tactics">Tactics</a></li>
+          <li><a href="#tracks">Racetracks</a></li>
+          <li><a href="#legacy">Legacy</a></li>
+          <li class="nav-divider" aria-hidden="true"></li>
+          <li><a href="#car-types">Car Types <span class="soon">Soon</span></a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#sources">Sources</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ================= HOME ================= -->
+    <section class="page" id="home" data-page aria-labelledby="home-title">
+      <div class="wrap">
+        <div class="hero">
+          <h1 id="home-title" tabindex="-1">Motorsport <span class="hl">from the</span> start line</h1>
+          <div class="hero-copy">
+            <p>New to racing? Start here. This guide explains the words, strategies, circuits, and landmark races behind F1, MotoGP, WEC, IndyCar, and NASCAR.</p>
+            <a class="btn" href="#terminology">Start with the basics</a>
+            <a class="btn btn--ghost" href="#tracks">Explore the track map</a>
+          </div>
+        </div>
+
+        <div class="stripe stripe--home" aria-hidden="true"><span></span></div>
+
+        <div class="section-label">
+          <h2>Start here</h2>
+          <p>Four steps, in order. Every page links to the others.</p>
+        </div>
+        <ol class="path">
+          <li><a class="p-yellow" href="#terminology">
+            <span class="step" aria-hidden="true">01</span>
+            <p class="kicker">Learn the language</p><span class="rule" aria-hidden="true"></span>
+            <h3 class="p-title">Terminology</h3>
+            <p class="p-desc">A beginner's dictionary, from apex to undercut.</p>
+            <p class="p-count" data-count="terms"></p>
+          </a></li>
+          <li><a class="p-orange" href="#tactics">
+            <span class="step" aria-hidden="true">02</span>
+            <p class="kicker">See the strategy</p><span class="rule" aria-hidden="true"></span>
+            <h3 class="p-title">Tactics</h3>
+            <p class="p-desc">How drivers and teams gain time and positions.</p>
+            <p class="p-count" data-count="tactics"></p>
+          </a></li>
+          <li><a class="p-navy" href="#tracks">
+            <span class="step" aria-hidden="true">03</span>
+            <p class="kicker">Know the venues</p><span class="rule" aria-hidden="true"></span>
+            <h3 class="p-title">Racetracks</h3>
+            <p class="p-desc">An interactive world map of the circuits that matter.</p>
+            <p class="p-count" data-count="tracks"></p>
+          </a></li>
+          <li><a class="p-white" href="#legacy">
+            <span class="step" aria-hidden="true">04</span>
+            <p class="kicker">Feel the history</p><span class="rule" aria-hidden="true"></span>
+            <h3 class="p-title">Legacy</h3>
+            <p class="p-desc">The series, the landmark races, and the drivers that shaped the sport.</p>
+            <p class="p-count" data-count="legacy"></p>
+          </a></li>
+        </ol>
+
+        <ul class="stats" aria-label="What is in this guide">
+          <li><b data-num="terms">0</b><span>terms explained</span></li>
+          <li><b data-num="tactics">0</b><span>race tactics</span></li>
+          <li><b data-num="tracks">0</b><span>racetracks mapped</span></li>
+          <li><b data-num="races">0</b><span>historical races</span></li>
+        </ul>
+
+        <div class="section-label">
+          <h2>The series</h2>
+          <p>Tags like these appear on every entry. Read each series' story in <a href="#series">Legacy</a>.</p>
+        </div>
+        <div class="series-row" id="series-row"></div>
+
+        <!-- Instagram: v1 ships the follow card (prd.md 5.2). -->
+        <section class="insta" aria-labelledby="insta-title">
+          <div class="insta-text">
+            <h2 id="insta-title">Follow <span>@paceandpublish</span> on Instagram</h2>
+            <p>This guide covers the basics. For the latest officially announced news across F1, MotoGP, WEC, IndyCar, and NASCAR, follow Pace &amp; Publish on Instagram.</p>
+            <a class="btn" href="https://www.instagram.com/paceandpublish/" rel="noopener" target="_blank">Follow @paceandpublish<span class="visually-hidden"> (opens Instagram in a new tab)</span></a>
+          </div>
+          <div class="insta-tiles" aria-hidden="true">
+            <span>F1</span><span>MotoGP</span><span>WEC</span><span>IndyCar</span><span>NASCAR</span><span>News</span>
+          </div>
+
+          <!--
+            BEHOLD FEED (deferred 2026-11-12; nothing here loads until enabled)
+            Setup steps, from prd.md section 5.2:
+              1. Make sure @paceandpublish is an Instagram Business account. Instagram has required
+                 this for third-party apps since December 2024, per Behold's FAQ (https://behold.so/faqs/).
+              2. Create a free Behold account, connect @paceandpublish, and create one feed.
+              3. Copy the feed ID from Behold (https://behold.so/docs/widget), paste it below in place
+                 of YOUR_FEED_ID, and remove these comment markers.
+            Watch-out: Behold's FAQ describes its JSON feed as its main product, with the drop-in widget
+            newer. If the widget doesn't fit, render the 6 posts from Behold's JSON feed with the site's
+            own styling instead. Test it from a file:// page, since some embed services need a real web address.
+            Keep the follow card above as the fallback.
+
+          <div class="insta-feed">
+            <behold-widget feed-id="YOUR_FEED_ID"></behold-widget>
+            <script>
+              (() => {
+                const d = document, s = d.createElement("script");
+                s.type = "module";
+                s.src = "https://w.behold.so/widget.js";
+                d.head.append(s);
+              })();
+            </script>
+          </div>
+          -->
+        </section>
+      </div>
+    </section>
+
+    <!-- ================= TERMINOLOGY ================= -->
+    <section class="page" id="terminology" data-page hidden aria-labelledby="terminology-title">
+      <div class="wrap">
+        <header class="page-head">
+          <div class="stripe" aria-hidden="true"><span></span></div>
+          <h1 class="page-title" id="terminology-title" tabindex="-1">Terminology</h1>
+          <p class="page-intro">A beginner's dictionary of racing terms, A to Z. Each entry says which series it applies to and links to related tactics, tracks, and races.</p>
+        </header>
+        <div class="term-tools">
+          <div class="filter" id="term-filter" role="group" aria-label="Filter terms by series"></div>
+          <label class="term-shared"><input type="checkbox" id="term-shared" checked> Include terms used in every series</label>
+          <div class="filter filter--topics" id="term-topics" role="group" aria-label="Show a set of terms"></div>
+          <p class="term-count" id="term-count" aria-live="polite"></p>
+        </div>
+        <nav class="az" id="az-bar" aria-label="Jump to letter"></nav>
+        <div id="terms-list"></div>
+      </div>
+    </section>
+
+    <!-- ================= TACTICS ================= -->
+    <section class="page" id="tactics" data-page hidden aria-labelledby="tactics-title">
+      <div class="wrap">
+        <header class="page-head">
+          <div class="stripe" aria-hidden="true"><span></span></div>
+          <h1 class="page-title" id="tactics-title" tabindex="-1">Tactics</h1>
+          <p class="page-intro">The strategies drivers and teams use to win, explained for beginners. Underlined words link to their definitions.</p>
+        </header>
+        <div id="tactics-list"></div>
+      </div>
+    </section>
+
+    <!-- ================= RACETRACKS ================= -->
+    <section class="page" id="tracks" data-page hidden aria-labelledby="racetracks-title">
+      <div class="wrap">
+        <header class="page-head">
+          <div class="stripe" aria-hidden="true"><span></span></div>
+          <h1 class="page-title" id="racetracks-title" tabindex="-1">Racetrack Repository</h1>
+          <p class="page-intro" id="map-intro">Hover over a marker to see the track name, or click it for a summary. Use the list of links beside the map to navigate.</p>
+        </header>
+
+        <div class="map-layout" id="map-top">
+          <div class="map-wrap" id="map-wrap">
+            <div id="track-map" role="region" aria-label="World map of racetracks"></div>
+            <div class="map-offline"><p>The map needs an internet connection to load. Every track is still listed beside the map and described below.</p></div>
+          </div>
+          <div class="track-panel">
+            <div class="track-panel-head">
+              <h2 id="track-list-title">All tracks</h2>
+              <div class="filter" id="track-filter" role="group" aria-label="Filter tracks by series"></div>
+            </div>
+            <ul class="track-list" id="track-list" aria-labelledby="track-list-title"></ul>
+          </div>
+        </div>
+
+        <div id="tracks-list"></div>
+      </div>
+    </section>
+
+    <!-- ================= LEGACY: Series, Historical Races, Hall of Fame ================= -->
+    <section class="page" id="legacy" data-page hidden aria-labelledby="legacy-title">
+      <div class="wrap">
+        <header class="page-head">
+          <div class="stripe" aria-hidden="true"><span></span></div>
+          <h1 class="page-title" id="legacy-title" tabindex="-1">Legacy</h1>
+          <p class="page-intro">The history behind the sport: the championships themselves, the races that defined them, and the drivers who made them famous.</p>
+        </header>
+
+        <nav class="legacy-nav" aria-label="Legacy sections">
+          <a href="#series"><b>01</b><span><strong>Series</strong><small data-count="series"></small></span></a>
+          <a href="#races"><b>02</b><span><strong>Historical Races</strong><small data-count="races"></small></span></a>
+          <a href="#hall-of-fame"><b>03</b><span><strong>Hall of Fame</strong><small>Coming soon</small></span></a>
+        </nav>
+
+        <section class="legacy-section" id="series" aria-labelledby="series-title">
+          <div class="stripe stripe--mini" aria-hidden="true"><span></span></div>
+          <div class="section-label">
+            <h2 id="series-title">Series</h2>
+            <p>The five championships this guide covers, and how each one began.</p>
+          </div>
+          <div id="series-list"></div>
+        </section>
+
+        <section class="legacy-section" id="races" aria-labelledby="races-title">
+          <div class="stripe stripe--mini" aria-hidden="true"><span></span></div>
+          <div class="section-label">
+            <h2 id="races-title">Historical Races</h2>
+            <p>Moments of pure drama that made motorsport history: these are the races that turned viewers into lifelong fans.</p>
+          </div>
+          <ol class="race-index" id="race-index"></ol>
+          <div id="races-list"></div>
+        </section>
+
+        <section class="legacy-section" id="hall-of-fame" aria-labelledby="hall-of-fame-title">
+          <div class="stripe stripe--mini" aria-hidden="true"><span></span></div>
+          <div class="section-label">
+            <h2 id="hall-of-fame-title">Hall of Fame</h2>
+            <p>Notable drivers and riders from across the series.</p>
+          </div>
+          <div class="placeholder">
+            <div class="ph-main">
+              <span class="tag tag--soon">Coming soon</span>
+              <p>Notable retired drivers and riders from across the series, chosen by a neutral rule based on official championship records.</p>
+            </div>
+            <div class="ph-side">
+              <h2>Until then</h2>
+              <ul>
+                <li>Read about landmark moments in <a href="#races">Historical Races</a>.</li>
+                <li>See how each championship began in <a href="#series">Series</a>.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <!-- ================= CAR TYPES (placeholder) ================= -->
+    <section class="page" id="car-types" data-page hidden aria-labelledby="car-types-title">
+      <div class="wrap">
+        <header class="page-head">
+          <div class="stripe" aria-hidden="true"><span></span></div>
+          <h1 class="page-title" id="car-types-title" tabindex="-1">Car Types</h1>
+        </header>
+        <div class="placeholder">
+          <div class="ph-main">
+            <span class="tag tag--soon">Coming soon</span>
+            <p>An overview of the classes of cars and motorcycles raced in each series, described side by side so you can see how they differ.</p>
+          </div>
+          <div class="ph-side">
+            <h2>Until then</h2>
+            <ul>
+              <li>Read about <a href="#term-downforce">downforce</a> and <a href="#term-slick-tire">slick tires</a>.</li>
+              <li>See how cars use <a href="#tactic-drafting">drafting</a> on fast tracks.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ================= ABOUT ================= -->
+    <section class="page" id="about" data-page hidden aria-labelledby="about-title">
+      <div class="wrap">
+        <header class="page-head">
+          <div class="stripe" aria-hidden="true"><span></span></div>
+          <h1 class="page-title" id="about-title" tabindex="-1">About</h1>
+          <p class="page-intro">Who is behind Pace &amp; Publish, and how this guide was made.</p>
+        </header>
+
+        <div class="about">
+          <div class="about-main">
+            <section class="about-block" aria-labelledby="about-team-title">
+              <div class="stripe stripe--mini" aria-hidden="true"><span></span></div>
+              <h2 id="about-team-title">The team</h2>
+              <p>Pace &amp; Publish is a fictional motorsport news brand, created and run by a student marketing team as a project for MK-680. The team built the brand from the ground up, from its name and voice to its colors and look, and runs its Instagram account, where it shares quick updates on what has been officially announced across F1, MotoGP, WEC, IndyCar, NASCAR, and other series. Every post is held to the same standard: a named official source, no rumors or speculation, and a tone that is professional, succinct, and genuinely interested in the sport. This website grew out of the same goal. Where the Instagram account follows the news, this guide gives new fans the background they need to enjoy it.</p>
+            </section>
+
+            <section class="about-block" aria-labelledby="about-ai-title">
+              <div class="stripe stripe--mini" aria-hidden="true"><span></span></div>
+              <h2 id="about-ai-title">How this site was made</h2>
+              <p>This website was built with help from Claude, an AI model made by Anthropic. Working from the team's plan and a requirements document developed with the team, Claude researched and wrote the guide's entries, chose the openly licensed photos, and wrote the site's code. The team set the direction at every step, including which pages to include, which series to cover, and the colors, type, and design, and reviewed the results along the way.</p>
+              <p>Every fact on the site comes from a cited source, not from the AI's memory, and each entry links to the sources it uses. AI can still make mistakes. If you spot an error, let us know on Instagram.</p>
+            </section>
+          </div>
+
+          <aside class="about-side" aria-label="Pace &amp; Publish at a glance">
+            <h2>At a glance</h2>
+            <dl>
+              <div><dt>What it is</dt><dd>A fictional brand and student project (MK-680)</dd></div>
+              <div><dt>Covers</dt><dd>F1, MotoGP, WEC, IndyCar, NASCAR, and more</dd></div>
+              <div><dt>Built with</dt><dd>Claude (Anthropic), directed and reviewed by the team</dd></div>
+              <div><dt>Affiliation</dt><dd>None with any series, team, or circuit</dd></div>
+            </dl>
+            <h2>Find us</h2>
+            <ul>
+              <li><a href="https://www.instagram.com/paceandpublish/" rel="noopener" target="_blank">@paceandpublish on Instagram</a></li>
+              <li><a href="#sources">Sources &amp; Credits</a></li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SOURCES AND CREDITS ================= -->
+    <section class="page" id="sources" data-page hidden aria-labelledby="sources-title">
+      <div class="wrap">
+        <header class="page-head">
+          <div class="stripe" aria-hidden="true"><span></span></div>
+          <h1 class="page-title" id="sources-title" tabindex="-1">Sources &amp; Credits</h1>
+          <p class="page-intro">Every fact on this site comes from a cited source, and every photo is credited with its author and license. All copy is written in our own words.</p>
+        </header>
+        <div class="credits-grid" id="credits"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div>
+        <a class="brand" href="#home">Pace <span>&amp;</span> Publish</a>
+        <p class="disclosure"><strong>Student project:</strong> Pace &amp; Publish is a fictional brand created as a student project (MK-680). It is not affiliated with any racing series, team, or circuit. Facts are cited on each entry and on the <a href="#sources">Sources &amp; Credits</a> page.</p>
+      </div>
+      <ul class="footer-links">
+        <li><a href="https://www.instagram.com/paceandpublish/" rel="noopener" target="_blank">Instagram</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#sources">Sources &amp; Credits</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- Classic scripts only (no modules): they work from a file:// address -->
+  <script src="vendor/leaflet/leaflet.js"></script>
+  <script src="vendor/world/land-50m.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

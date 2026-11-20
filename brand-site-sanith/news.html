@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Motorsport News · Pace &amp; Publish</title>
+<meta name="description" content="F1, MotoGP, NASCAR and WEC race results, race recaps and stories, all in one place.">
+<script>
+  /* Montserrat from Google Fonts (PRD 4). Only requested when the browser is online, so the site
+     opens offline with a clean console and falls back to a system sans-serif. */
+  if (navigator.onLine !== false) {
+    document.write('<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap">');
+  }
+</script>
+<link rel="icon" href="images/logo-icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/style.css?v=car-3">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="wordmark logo" href="index.html" aria-label="Pace &amp; Publish home"><svg class="logo-g" viewBox="0 0 300 48" width="200" height="32" aria-hidden="true" focusable="false"><defs><clipPath id="logo-badge"><rect x="0" y="0" width="76" height="48"/></clipPath></defs><rect x="0" y="0" width="76" height="48" fill="#7C5CFF"/><g clip-path="url(#logo-badge)"><g class="g-lines"><rect x="2" y="16" width="22" height="3" fill="#F4F2FA" opacity=".9"/><rect x="8" y="23" width="16" height="3" fill="#F4F2FA" opacity=".7"/><rect x="14" y="30" width="10" height="3" fill="#F4F2FA" opacity=".5"/></g><g class="g-car"><g transform="translate(18,12) scale(0.46)"><polygon points="8,24 16,17 34,14 46,10 58,10 64,15 84,19 112,25 116,30 8,30" fill="#F4F2FA"/><rect x="2" y="6" width="16" height="4" fill="#F4F2FA"/><rect x="6" y="9" width="4" height="15" fill="#F4F2FA"/><circle cx="26" cy="31" r="10" fill="#14121C" stroke="#F4F2FA" stroke-width="3"/><circle cx="92" cy="32" r="8.5" fill="#14121C" stroke="#F4F2FA" stroke-width="3"/></g></g></g><text x="88" y="21" font-family="Montserrat, system-ui, sans-serif" font-weight="800" font-size="18" letter-spacing="2" fill="#F4F2FA">PACE &amp;</text><text x="88" y="42" font-family="Montserrat, system-ui, sans-serif" font-weight="800" font-size="18" letter-spacing="2" fill="#F4F2FA">PUBLISH</text></svg></a>
+    <nav class="site-nav" aria-label="Main menu">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="planner.html">Race weekend planner</a></li>
+        <li><a href="calendar.html">Race calendar</a></li>
+        <li><a href="news.html" aria-current="page">News</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <div class="page-head has-photo">
+      <img src="images/photos/wec-spa-2024.jpg" alt="WEC (FIA World Endurance Championship) Hypercars racing at the 2024 6 Hours of Spa-Francorchamps" width="2000" height="1200">
+      <div class="ph-shade" aria-hidden="true"></div>
+      <div class="ph-text">
+      <p class="kicker">News</p>
+      <h1>Motorsport news, race results and recaps</h1>
+      <hr class="rule">
+      <p class="lead">Confirmed results, race updates and stories from F1, MotoGP, NASCAR and WEC. Every item names the official site it comes from.</p>
+      </div>
+      <p class="photo-credit">Photo: WEC, 2024 6 Hours of Spa-Francorchamps · MarcelX42, CC BY-SA 4.0, via Wikimedia Commons</p>
+    </div>
+
+    <div class="filters" id="filters">
+      <div class="filter-group" role="group" aria-labelledby="f-series-label">
+        <span class="filter-label" id="f-series-label">Series</span>
+        <button type="button" class="btn" data-series="all" aria-pressed="true">All</button>
+        <button type="button" class="btn" data-series="f1" aria-pressed="false">F1</button>
+        <button type="button" class="btn" data-series="motogp" aria-pressed="false">MotoGP</button>
+        <button type="button" class="btn" data-series="nascar" aria-pressed="false">NASCAR</button>
+        <button type="button" class="btn" data-series="wec" aria-pressed="false">WEC</button>
+      </div>
+      <div class="filter-group" role="group" aria-labelledby="f-type-label">
+        <span class="filter-label" id="f-type-label">Type</span>
+        <button type="button" class="btn" data-type="all" aria-pressed="true">All types</button>
+        <button type="button" class="btn" data-type="results" aria-pressed="false">Results</button>
+        <button type="button" class="btn" data-type="story" aria-pressed="false">Driver and team stories</button>
+        <button type="button" class="btn" data-type="update" aria-pressed="false">Updates</button>
+      </div>
+      <div class="filter-group">
+        <label class="filter-label" for="news-search">Search</label>
+        <input type="search" id="news-search" placeholder="Driver, team or track, for example Marquez" autocomplete="off">
+      </div>
+    </div>
+
+    <p class="result-count" id="result-count" aria-live="polite"></p>
+    <div class="news-list" id="news-out"></div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p class="student-note">A student project for a fictional brand at Sacred Heart University.</p>
+    <p>Pace &amp; Publish: F1, MotoGP, NASCAR and WEC news in one place. Facts come only from formula1.com, motogp.com, nascar.com and fiawec.com.</p>
+    <p class="small">Series photos are free-license photos from Wikimedia Commons; credits are on the <a href="about.html#photo-credits">About</a> page.</p>
+  </div>
+</footer>
+<script src="data/news.js"></script>
+<script src="data/photos.js"></script>
+<script src="js/common.js?v=car-3"></script>
+<script src="js/news.js?v=car-3"></script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pace &amp; Publish · F1, MotoGP, NASCAR and WEC News</title>
+<meta name="description" content="Pace &amp; Publish: F1, MotoGP, NASCAR and WEC news, race results and race schedules, all in one place.">
+<script>
+  /* Montserrat from Google Fonts (PRD 4). Only requested when the browser is online, so the site
+     opens offline with a clean console and falls back to a system sans-serif. */
+  if (navigator.onLine !== false) {
+    document.write('<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap">');
+  }
+</script>
+<link rel="icon" href="images/logo-icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/style.css?v=car-3">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="wordmark logo" href="index.html" aria-label="Pace &amp; Publish home"><svg class="logo-g" viewBox="0 0 300 48" width="200" height="32" aria-hidden="true" focusable="false"><defs><clipPath id="logo-badge"><rect x="0" y="0" width="76" height="48"/></clipPath></defs><rect x="0" y="0" width="76" height="48" fill="#7C5CFF"/><g clip-path="url(#logo-badge)"><g class="g-lines"><rect x="2" y="16" width="22" height="3" fill="#F4F2FA" opacity=".9"/><rect x="8" y="23" width="16" height="3" fill="#F4F2FA" opacity=".7"/><rect x="14" y="30" width="10" height="3" fill="#F4F2FA" opacity=".5"/></g><g class="g-car"><g transform="translate(18,12) scale(0.46)"><polygon points="8,24 16,17 34,14 46,10 58,10 64,15 84,19 112,25 116,30 8,30" fill="#F4F2FA"/><rect x="2" y="6" width="16" height="4" fill="#F4F2FA"/><rect x="6" y="9" width="4" height="15" fill="#F4F2FA"/><circle cx="26" cy="31" r="10" fill="#14121C" stroke="#F4F2FA" stroke-width="3"/><circle cx="92" cy="32" r="8.5" fill="#14121C" stroke="#F4F2FA" stroke-width="3"/></g></g></g><text x="88" y="21" font-family="Montserrat, system-ui, sans-serif" font-weight="800" font-size="18" letter-spacing="2" fill="#F4F2FA">PACE &amp;</text><text x="88" y="42" font-family="Montserrat, system-ui, sans-serif" font-weight="800" font-size="18" letter-spacing="2" fill="#F4F2FA">PUBLISH</text></svg></a>
+    <nav class="site-nav" aria-label="Main menu">
+      <ul>
+        <li><a href="index.html" aria-current="page">Home</a></li>
+        <li><a href="planner.html">Race weekend planner</a></li>
+        <li><a href="calendar.html">Race calendar</a></li>
+        <li><a href="news.html">News</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero-photo" aria-labelledby="hero-title">
+    <img class="hero-bg" src="images/photos/wec-spa-2024.jpg" width="2000" height="1125" alt="WEC (FIA World Endurance Championship) Hypercars racing at the 2024 6 Hours of Spa-Francorchamps">
+    <video class="hero-bg hero-video" id="hero-video" autoplay muted loop playsinline preload="auto" poster="images/photos/wec-spa-2024.jpg" aria-hidden="true">
+      <source src="videos/circuit-city-skyline-1080p.mp4" type="video/mp4">
+    </video>
+    <div class="hero-shade" aria-hidden="true"></div>
+    <div class="wrap hero-content">
+      <p class="kicker">Motorsport news · all in one place</p>
+      <h1 id="hero-title">Your racing news in one place</h1>
+      <p class="lead" id="what-we-are">Pace &amp; Publish brings you F1, MotoGP, NASCAR and WEC news, race results and race schedules, all in one place.</p>
+      <p class="hero-actions"><a class="btn is-primary" href="planner.html">Plan your race weekend</a> <a class="btn btn-light" href="news.html">Read the news</a></p>
+    </div>
+    <p class="photo-credit wrap"><span class="credit-video">Video: Formula 1 cars racing on a circuit with a city skyline · Abhilash Venkat, via <a href="https://www.pexels.com/video/exciting-race-circuit-with-city-skyline-backdrop-38076413/" target="_blank" rel="noopener">Pexels</a> (Pexels License) · </span>Photo: WEC, 2024 6 Hours of Spa-Francorchamps · MarcelX42, <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>, via <a href="https://commons.wikimedia.org/wiki/File:2024_6_Hours_of_Spa-Francorchamps_(DSC08756).jpg" target="_blank" rel="noopener">Wikimedia Commons</a></p>
+  </section>
+
+  <section class="section" aria-labelledby="strip-title">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="strip-title">All in one place</h2>
+        <p class="muted">Four series, one site. Pick a series to see its news.</p>
+      </div>
+      <nav class="strip strip-photos" aria-label="News by series" id="series-strip">
+        <a href="news.html?series=f1" data-series="f1"><span class="strip-img"><img src="images/photos/f1-silverstone-2024.jpg" alt="F1 (Formula 1) car on track during qualifying for the 2024 British Grand Prix at Silverstone" loading="lazy" width="2000" height="1500"></span><span class="strip-text"><span class="tag">F1</span><span class="strip-name">F1</span><span class="strip-long">Formula 1</span><span class="strip-go">F1 news →</span></span></a>
+        <a href="news.html?series=motogp" data-series="motogp"><span class="strip-img"><img src="images/photos/motogp-phillip-island-2007.jpg" alt="MotoGP riders racing at Phillip Island during the 2007 Australian motorcycle Grand Prix" loading="lazy" width="2048" height="1370"></span><span class="strip-text"><span class="tag">MotoGP</span><span class="strip-name">MotoGP</span><span class="strip-long">MotoGP World Championship</span><span class="strip-go">MotoGP news →</span></span></a>
+        <a href="news.html?series=nascar" data-series="nascar"><span class="strip-img"><img src="images/photos/nascar-nashville-2024.jpg" alt="NASCAR Cup Series cars racing at Nashville Superspeedway during the 2024 Ally 400" loading="lazy" width="2000" height="1500"></span><span class="strip-text"><span class="tag">NASCAR</span><span class="strip-name">NASCAR</span><span class="strip-long">NASCAR Cup Series</span><span class="strip-go">NASCAR news →</span></span></a>
+        <a href="news.html?series=wec" data-series="wec"><span class="strip-img"><img src="images/photos/wec-spa-2024.jpg" alt="WEC (FIA World Endurance Championship) Hypercars racing at the 2024 6 Hours of Spa-Francorchamps" loading="lazy" width="2000" height="1125"></span><span class="strip-text"><span class="tag">WEC</span><span class="strip-name">WEC</span><span class="strip-long">FIA World Endurance Championship</span><span class="strip-go">WEC news →</span></span></a>
+      </nav>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="latest-title">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="latest-title">Latest news</h2>
+        <a class="link-more" href="news.html">All news →</a>
+      </div>
+      <div class="latest" id="latest-news"></div>
+    </div>
+  </section>
+
+  <section class="section planner-promo" aria-labelledby="promo-title">
+    <div class="wrap promo-inner">
+      <div>
+        <p class="kicker">Race weekend planner</p>
+        <h2 id="promo-title">Every session you follow, in one list, in your time zone</h2>
+        <p class="muted">Pick F1, MotoGP, NASCAR or WEC, choose your time zone and see the whole weekend in time order, with clashes marked.</p>
+        <p><a class="btn is-primary" href="planner.html">Open the planner</a> <a class="btn" href="calendar.html">Race calendar</a></p>
+      </div>
+      <img src="images/photos/nascar-nashville-2024.jpg" alt="NASCAR Cup Series cars racing at Nashville Superspeedway during the 2024 Ally 400" loading="lazy" width="2000" height="1500">
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="launch-title">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="launch-title">From our Instagram launch</h2>
+        <p class="muted">The three posts that launched @paceandpublish.</p>
+      </div>
+      <p><a class="btn is-primary" id="instagram-link" href="https://www.instagram.com/paceandpublish/" target="_blank" rel="noopener noreferrer">Follow @paceandpublish on Instagram ↗</a></p>
+      <div class="hero-images">
+        <img src="images/sanith-launch-1.png" width="1080" height="1350" loading="lazy" alt="Pace &amp; Publish launch graphic: All your racing. One feed. Motorsport news for F1 (Formula 1), MotoGP, NASCAR and WEC (World Endurance Championship) in one place.">
+        <img src="images/sanith-launch-2.png" width="1080" height="1350" loading="lazy" alt="Pace &amp; Publish launch graphic: Morning, After work, Every series. F1, MotoGP, NASCAR and WEC race results and race recaps when fans check in.">
+        <img src="images/sanith-launch-3.png" width="1080" height="1350" loading="lazy" alt="Pace &amp; Publish launch graphic: The Daily Roundup, a checklist of motorsport news for F1, MotoGP, NASCAR and WEC.">
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p class="student-note">A student project for a fictional brand at Sacred Heart University.</p>
+    <p>Pace &amp; Publish: F1, MotoGP, NASCAR and WEC news in one place. Facts come only from formula1.com, motogp.com, nascar.com and fiawec.com.</p>
+    <p class="small">Series photos are free-license photos from Wikimedia Commons; credits are on the <a href="about.html#photo-credits">About</a> page.</p>
+  </div>
+</footer>
+<script src="data/news.js"></script>
+<script src="data/photos.js"></script>
+<script src="js/common.js?v=car-3"></script>
+<script src="js/home.js?v=car-3"></script>
+</body>
+</html>

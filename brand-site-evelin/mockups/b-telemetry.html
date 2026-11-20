@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mockup B · Telemetry | Pace & Publish</title>
+<link rel="stylesheet" href="mockup-base.css">
+<style>
+  /* ---------- B: TELEMETRY — timing screen / data dashboard ---------- */
+  body { background: var(--carbon); background-image: linear-gradient(rgba(42,46,53,.45) 1px, transparent 1px), linear-gradient(90deg, rgba(42,46,53,.45) 1px, transparent 1px); background-size: 96px 96px; }
+  .nav { display: grid; grid-template-columns: 260px 1fr auto; align-items: stretch; border-bottom: 1px solid var(--line); background: rgba(10,11,13,.94); }
+  .logo { display: flex; align-items: center; gap: 12px; padding: 0 var(--pad); border-right: 1px solid var(--line); font: 700 24px var(--display); letter-spacing: .06em; text-transform: uppercase; }
+  .logo i { width: 28px; height: 3px; background: #1B5E3A; transform: skewX(-30deg); }
+  .links { display: flex; }
+  .links a { display: flex; align-items: center; padding: 22px 26px 20px; border-right: 1px solid var(--line); font: 700 15px var(--display); letter-spacing: .16em; text-transform: uppercase; color: var(--metal-2); }
+  .links a.on { color: var(--white); box-shadow: inset 0 -3px 0 var(--red); }
+  .live { display: flex; align-items: center; gap: 10px; padding: 0 var(--pad); font: 700 14px var(--display); letter-spacing: .16em; text-transform: uppercase; color: var(--metal); }
+  .live::before { content: ""; width: 8px; height: 8px; background: var(--red-text); }
+
+  .hero { display: grid; grid-template-columns: 420px 1fr; min-height: calc(100vh - 100px); border-bottom: 1px solid var(--line); }
+  /* Timing tower */
+  .tower { border-right: 1px solid var(--line); background: rgba(10,11,13,.96); display: flex; flex-direction: column; }
+  .tower h2 { margin: 0; padding: 22px 26px; font: 700 15px var(--display); letter-spacing: .2em; text-transform: uppercase; color: var(--metal); border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; }
+  .row { display: grid; grid-template-columns: 54px 1fr; border-bottom: 1px solid var(--line); }
+  .row .pos { display: flex; align-items: center; justify-content: center; font: 700 30px var(--display); background: var(--carbon-2); border-right: 1px solid var(--line); }
+  .row.p1 .pos { background: var(--red); }
+  .row .r { padding: 16px 20px; }
+  .row .r b { display: block; font: 700 19px/1.1 var(--display); text-transform: uppercase; margin-top: 8px; }
+  .tower .more { margin-top: auto; padding: 18px 26px; font: 700 14px var(--display); letter-spacing: .16em; text-transform: uppercase; color: var(--red-text); border-top: 1px solid var(--line); }
+  /* Framed car */
+  .stage { position: relative; overflow: hidden; }
+  .stage img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 48% 50%; }
+  .stage::before { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(0deg, rgba(10,11,13,.95) 0%, rgba(10,11,13,.1) 45%), linear-gradient(90deg, rgba(10,11,13,.6), rgba(10,11,13,0) 40%); }
+  .frame { position: absolute; z-index: 2; left: 18%; right: 14%; top: 14%; bottom: 34%; border: 1px solid rgba(244,244,242,.35); }
+  .frame::before, .frame::after { content: ""; position: absolute; width: 22px; height: 22px; border-color: var(--red-text); border-style: solid; }
+  .frame::before { left: -1px; top: -1px; border-width: 2px 0 0 2px; }
+  .frame::after { right: -1px; bottom: -1px; border-width: 0 2px 2px 0; }
+  .frame span { position: absolute; font: 700 12px var(--display); letter-spacing: .16em; text-transform: uppercase; color: var(--metal-2); }
+  .frame .tl { left: 0; top: -22px; } .frame .br { right: 0; bottom: -22px; }
+  .sector { position: absolute; z-index: 2; top: 0; bottom: 0; width: 1px; background: rgba(244,244,242,.18); }
+  .sector b { position: absolute; top: 14px; left: 8px; font: 700 12px var(--display); letter-spacing: .16em; color: var(--metal); }
+  .hero-copy { position: absolute; z-index: 3; left: 48px; right: 48px; bottom: 44px; display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 30px; }
+  .hero-copy h1 { font-size: 150px; }
+  .hero-copy h1 span { color: var(--red-text); }
+  .hero-copy p { margin: 16px 0 0; color: #D7DADF; max-width: 48ch; }
+  .btns { display: flex; flex-direction: column; gap: 10px; }
+  .btn { display: block; padding: 16px 24px 14px; font: 700 16px var(--display); letter-spacing: .16em; text-transform: uppercase; background: var(--red); text-align: center; }
+  .btn.ghost { background: rgba(10,11,13,.6); border: 1px solid var(--line); }
+  .hero-credit { position: absolute; z-index: 3; right: 48px; top: 18px; }
+
+  /* Figures strip */
+  .figs { display: grid; grid-template-columns: repeat(4, 1fr); border-bottom: 1px solid var(--line); background: rgba(10,11,13,.94); }
+  .figs div { padding: 34px var(--pad); }
+  .figs div + div { border-left: 1px solid var(--line); }
+  .figs strong { display: block; font: 700 120px/.85 var(--display); }
+  .figs span { font: 700 14px var(--display); letter-spacing: .18em; text-transform: uppercase; color: var(--metal); }
+  .figs small { display: block; margin-top: 6px; color: var(--metal); font-size: 12px; }
+
+  /* Circuit dashboard */
+  .dash { display: grid; grid-template-columns: 1fr 1.5fr 1fr; border-bottom: 1px solid var(--line); background: rgba(10,11,13,.9); }
+  .panel { padding: 34px; }
+  .panel + .panel { border-left: 1px solid var(--line); }
+  .panel h3 { font: 700 14px var(--display); letter-spacing: .2em; text-transform: uppercase; color: var(--metal); margin: 0 0 18px; }
+  .clist a { display: flex; justify-content: space-between; padding: 16px 0; border-bottom: 1px solid var(--line); font: 700 26px var(--display); text-transform: uppercase; }
+  .clist a.on { color: var(--red-text); }
+  .clist a span { font-size: 14px; color: var(--metal); letter-spacing: .14em; }
+  .map { display: flex; align-items: center; justify-content: center; }
+  .map img { width: 100%; filter: invert(1) hue-rotate(180deg); mix-blend-mode: screen; }
+  .readout div { display: flex; justify-content: space-between; align-items: baseline; padding: 14px 0; border-bottom: 1px solid var(--line); }
+  .readout dt { font: 700 14px var(--display); letter-spacing: .16em; text-transform: uppercase; color: var(--metal); }
+  .readout dd { margin: 0; font: 700 44px/1 var(--display); }
+  .readout dd.red { color: var(--red-text); }
+  .photo { margin-top: 18px; height: 150px; overflow: hidden; }
+  .photo img { width: 100%; height: 100%; object-fit: cover; }
+
+  /* Series lanes */
+  .lanes { display: grid; grid-template-columns: repeat(4, 1fr); background: rgba(10,11,13,.9); }
+  .lane { border-right: 1px solid var(--line); padding: 26px; min-height: 300px; display: flex; flex-direction: column; }
+  .lane .n { font: 700 90px/.8 var(--display); color: transparent; -webkit-text-stroke: 1px var(--metal); }
+  .lane h3 { font-size: 44px; margin: 14px 0 6px; }
+  .lane .bar { height: 4px; background: var(--line); margin-top: auto; position: relative; }
+  .lane .bar i { position: absolute; left: 0; top: 0; bottom: 0; background: var(--red); }
+  .lane p { color: var(--metal); font-size: 13px; margin: 10px 0 0; }
+  footer { padding: 30px var(--pad); color: var(--metal); font-size: 13px; background: var(--carbon); }
+</style>
+</head>
+<body>
+<div class="mock-banner"><span>MOCKUP B · "TELEMETRY" — timing-screen dashboard. Design comp only. Photos are <u>unapproved</u> Wikimedia Commons candidates.</span><a href="index.html">All mockups</a></div>
+
+<header class="nav">
+  <div class="logo">Pace &amp; Publish <i></i></div>
+  <nav class="links"><a class="on">Home</a><a>News</a><a>Circuits</a><a>Dashboard</a><a>Calendar</a><a>About</a></nav>
+  <div class="live">Verified · Nov 12, 2026</div>
+</header>
+
+<section class="hero">
+  <aside class="tower">
+    <h2><span>Latest · Timing</span><span>P1–P5</span></h2>
+    <a class="row p1"><span class="pos">1</span><span class="r"><span class="tag">WEC</span> <span class="date">Nov 11</span><b>Bronze-rated drivers can't race in the Hypercar class</b></span></a>
+    <a class="row"><span class="pos">2</span><span class="r"><span class="tag">F1</span> <span class="date">Nov 9</span><b>Five drivers did not finish the Mexico City Grand Prix</b></span></a>
+    <a class="row"><span class="pos">3</span><span class="r"><span class="tag">F1</span> <span class="date">Nov 8</span><b>Verstappen, Hamilton and Antonelli on the Mexico City podium</b></span></a>
+    <a class="row"><span class="pos">4</span><span class="r"><span class="tag">MotoGP</span> <span class="date">Nov 8</span><b>Two riders named Marquez share the Malaysia podium</b></span></a>
+    <a class="row"><span class="pos">5</span><span class="r"><span class="tag">F1</span> <span class="date">Nov 4</span><b>Race week: F1 heads to Interlagos</b></span></a>
+    <a class="more">Full timing — all 14 stories →</a>
+  </aside>
+  <div class="stage">
+    <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cf/2024-08-25_Motorsport%2C_Formel_1%2C_Gro%C3%9Fer_Preis_der_Niederlande_2024_STP_3829_by_Stepro.jpg/1920px-2024-08-25_Motorsport%2C_Formel_1%2C_Gro%C3%9Fer_Preis_der_Niederlande_2024_STP_3829_by_Stepro.jpg" alt="Formula 1 car throwing sparks">
+    <span class="sector" style="left:33%"><b>S1</b></span><span class="sector" style="left:66%"><b>S2</b></span>
+    <div class="frame"><span class="tl">Target · On track</span><span class="br">2024 Dutch GP</span></div>
+    <p class="credit hero-credit"><span class="candidate">Candidate</span>Steffen Prößdorf · CC BY-SA 4.0</p>
+    <div class="hero-copy">
+      <div><h1 class="disp">Every series.<br><span>One feed.</span></h1><p>F1, MotoGP, NASCAR and WEC: verified news, timed and in our own words.</p></div>
+      <div class="btns"><a class="btn">Build my dashboard</a><a class="btn ghost">Explore circuits</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="figs">
+  <div><strong>04</strong><span>Series</span><small>F1 · MotoGP · NASCAR · WEC</small></div>
+  <div><strong>14</strong><span>Verified stories</span><small>Oct 25 – Nov 11, 2026</small></div>
+  <div><strong>13</strong><span>Verified events</span><small>From official calendars</small></div>
+  <div><strong>03</strong><span>Circuits mapped</span><small>Monaco · Silverstone · Suzuka</small></div>
+</section>
+
+<section class="dash">
+  <div class="panel"><h3>Circuit select</h3><div class="clist"><a class="on">Monaco <span>01</span></a><a>Silverstone <span>02</span></a><a>Suzuka <span>03</span></a></div></div>
+  <div class="panel map"><img src="../assets/images/circuits/monaco-track.svg" alt="Circuit de Monaco layout"></div>
+  <div class="panel"><h3>Readout · Circuit de Monaco</h3>
+    <dl class="readout"><div><dt>Length</dt><dd class="red">3.337 km</dd></div><div><dt>Turns</dt><dd>19</dd></div><div><dt>Laps</dt><dd>78</dd></div><div><dt>Type</dt><dd style="font-size:22px">Street circuit</dd></div></dl>
+    <div class="photo"><img src="../assets/images/circuits/monaco.jpg" alt="Monaco from above"></div>
+  </div>
+</section>
+
+<section class="lanes">
+  <div class="lane"><span class="n">01</span><h3 class="disp">Formula 1</h3><span class="bar"><i style="width:100%"></i></span><p>8 stories</p></div>
+  <div class="lane"><span class="n">02</span><h3 class="disp">MotoGP</h3><span class="bar"><i style="width:38%"></i></span><p>3 stories</p></div>
+  <div class="lane"><span class="n">03</span><h3 class="disp">NASCAR</h3><span class="bar"><i style="width:0"></i></span><p>Coverage pending verification</p></div>
+  <div class="lane"><span class="n">04</span><h3 class="disp">WEC</h3><span class="bar"><i style="width:38%"></i></span><p>3 stories</p></div>
+</section>
+<footer>Mockup B · Figures are counts of Pace & Publish's own verified content (data/content.js), not race statistics. Hero © Steffen Prößdorf (CC BY-SA 4.0), candidate.</footer>
+</body>
+</html>

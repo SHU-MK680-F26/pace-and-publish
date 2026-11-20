@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My Racing Dashboard | Pace & Publish</title>
+  <meta name="description" content="Pick the racing series you follow and see only their stories.">
+  <meta name="theme-color" content="#0B0D12">
+  <meta name="color-scheme" content="dark">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Pace &amp; Publish">
+  <meta property="og:title" content="My Racing Dashboard | Pace &amp; Publish">
+  <meta property="og:description" content="Pick the racing series you follow and see only their stories.">
+  <meta name="twitter:card" content="summary">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page="dashboard">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="util-bar">
+      <div class="container util-inner">
+        <ul aria-label="Series">
+          <li><a href="news.html#f1">F1</a></li>
+          <li><a href="news.html#motogp">MotoGP</a></li>
+          <li><a href="news.html#nascar">NASCAR</a></li>
+          <li><a href="news.html#wec">WEC</a></li>
+        </ul>
+        <span class="util-live">Verified news · Content as of <span data-as-of></span></span>
+      </div>
+    </div>
+    <div class="container header-inner">
+      <a class="logo" href="index.html" aria-label="Pace &amp; Publish, home">
+        <span class="logo-word">Pace &amp; Publish</span>
+        <span class="logo-rule" aria-hidden="true"></span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav">
+        <span class="nav-toggle-bars" aria-hidden="true"></span>
+        <span class="nav-toggle-label">Menu</span>
+      </button>
+      <nav class="main-nav" id="main-nav" aria-label="Main">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="news.html">News</a></li>
+          <li><a href="circuits.html">Explore Circuits</a></li>
+          <li><a href="calendar.html">Race Calendar</a></li>
+          <li><a href="about.html">About</a></li>
+          <li class="nav-cta-item"><a class="nav-cta" href="dashboard.html" aria-current="page">My Dashboard</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="page-intro page-intro--photo page-intro--dashboard">
+      <div class="container">
+        <p class="kicker"><span class="num">Dashboard</span> Personal feed</p>
+        <h1>Your racing. Your way.</h1>
+        <p>Choose the series you follow and build your own motorsport feed. Stories and upcoming events update as you go.</p>
+      
+        <p class="intro-credit">Header: F1 tyres, 2024 Dutch Grand Prix (file photo) · Photo: Steffen Prößdorf · <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer license">CC BY-SA 4.0</a> · <a href="https://commons.wikimedia.org/wiki/File:2024-08-25_Motorsport,_Formel_1,_Gro%C3%9Fer_Preis_der_Niederlande_2024_STP_3619_by_Stepro.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a><span class="visually-hidden"> (links open in a new tab)</span></p>
+      </div>
+    </div>
+    <section class="section" aria-label="My Racing Dashboard">
+      <div class="container">
+        <section class="dash-panel" aria-labelledby="dash-controls-title">
+          <h2 id="dash-controls-title">Choose your series</h2>
+          <p class="dash-hint" id="dash-hint">Select any combination. Selected series are filled red with a check mark, and your choice is saved on this device.</p>
+          <div class="dash-controls">
+            <div class="toggle-group" id="series-toggles" role="group" aria-labelledby="dash-controls-title" aria-describedby="dash-hint"></div>
+            <div class="dash-actions">
+              <button class="btn btn-quiet" type="button" id="select-all">Select all</button>
+              <button class="btn btn-quiet" type="button" id="clear-all">Clear</button>
+            </div>
+          </div>
+        </section>
+        <section aria-labelledby="dash-results-title">
+          <h2 class="visually-hidden" id="dash-results-title">Your stories</h2>
+          <p class="dash-summary" id="dash-summary" aria-live="polite" role="status"></p>
+          <div id="dash-results"></div>
+        </section>
+        <section class="dash-subhead" id="dash-events-section" aria-labelledby="dash-events-title">
+          <div class="section-head">
+            <div>
+              <p class="kicker"><span class="num">Next</span> Filtered by your series</p>
+              <h2 id="dash-events-title">Upcoming events</h2>
+            </div>
+            <a class="text-link" href="calendar.html">Full race calendar</a>
+          </div>
+          <div id="dash-events"></div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <p class="logo-word">Pace &amp; Publish</p>
+          <p class="footer-note">Motorsport news in one place: F1, MotoGP, NASCAR and WEC, written in our own words and built on confirmed facts from each series' official website.</p>
+          <p class="footer-note">Pace &amp; Publish is a fictional brand created by Team B for MK-680 at Sacred Heart University.</p>
+        </div>
+        <nav class="footer-nav footer-col" aria-label="Footer">
+          <h2>Explore</h2>
+          <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="news.html">News</a></li>
+              <li><a href="circuits.html">Explore Circuits</a></li>
+              <li><a href="dashboard.html">My Racing Dashboard</a></li>
+              <li><a href="calendar.html">Race Calendar</a></li>
+              <li><a href="about.html">About</a></li>
+          </ul>
+        </nav>
+        <div class="footer-col">
+          <h2>Sources</h2>
+          <p>Facts come only from the official series websites: formula1.com, motogp.com, fiawec.com and nascar.com. Each story and event names its source and date.</p>
+          <p>NASCAR content is pending verification.</p>
+        </div>
+        <div class="footer-col">
+          <h2>Follow</h2>
+          <ul>
+            <li><a href="https://www.instagram.com/paceandpublish/" target="_blank" rel="noopener noreferrer">Instagram: @paceandpublish<span class="visually-hidden"> (opens in a new tab)</span></a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span class="student">Student project · not a real news outlet</span>
+        <span>Team B · MK-680 · Sacred Heart University · 2026</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="data/content.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>
