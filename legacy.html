@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Legacy | Pace &amp; Publish</title>
+<meta name="description" content="The history behind motorsport: how each championship began and the races that defined them.">
+<meta name="theme-color" content="#0C0C12">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="assets/images/logo/logo-icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/components.css">
+</head>
+<body data-page="legacy">
+<div id="site-header"></div>
+
+<main id="main">
+  <div class="wrap">
+    <header class="page-head">
+      <div class="stripe" aria-hidden="true"><span></span></div>
+      <h1 tabindex="-1">Legacy</h1>
+      <p class="page-intro">The history behind the sport: the championships themselves and the races that defined them.</p>
+    </header>
+    <nav class="legacy-nav" aria-label="Legacy sections">
+      <a href="#series"><b>01</b><span><strong>Series</strong><small><span data-legacy-count="series"></span> championships</small></span></a>
+      <a href="#races"><b>02</b><span><strong>Historical races</strong><small><span data-legacy-count="races"></span> races</small></span></a>
+      <a href="tracks.html"><b>03</b><span><strong>Racetracks</strong><small>Where it all happened</small></span></a>
+    </nav>
+    <section class="legacy-section" id="series" aria-labelledby="series-title">
+      <div class="stripe stripe--mini" aria-hidden="true"><span></span></div>
+      <div class="section-head"><h2 id="series-title">Series</h2><p>The championships we cover, and how each one began.</p></div>
+      <div id="series-list"></div>
+    </section>
+    <section class="legacy-section" id="races" aria-labelledby="races-title">
+      <div class="stripe stripe--mini" aria-hidden="true"><span></span></div>
+      <div class="section-head"><h2 id="races-title">Historical races</h2><p>Moments of pure drama that turned viewers into lifelong fans.</p></div>
+      <ol class="race-index" id="race-index"></ol>
+      <div id="races-list"></div>
+    </section>
+  </div>
+</main>
+
+<div id="site-footer"></div>
+<script src="data/series.js"></script>
+<script src="data/photos.js"></script>
+<script src="data/sources.js"></script>
+<script src="data/series-history.js"></script>
+<script src="data/terms.js"></script>
+<script src="data/tactics.js"></script>
+<script src="data/tracks.js"></script>
+<script src="data/races.js"></script>
+<script src="js/core.js"></script>
+<script src="js/layout.js"></script>
+<script src="js/features/guide.js"></script>
+<script>PP.guide.renderLegacy();</script>
+</body>
+</html>
