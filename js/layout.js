@@ -13,6 +13,7 @@
   var PP = window.PP, U = PP.util;
 
   var NAV = [
+    { id: "home", label: "Home", href: "index.html", desktopOnly: true },   // phones use the logo instead
     { id: "news", label: "News", href: "news.html" },
     { id: "series", label: "Series", children: "series" },
     { id: "calendar", label: "Calendar", href: "calendar.html" },
@@ -49,14 +50,14 @@
   var LOGO =
     '<svg viewBox="0 0 268 48" width="224" height="40" aria-hidden="true" focusable="false">' +
       '<defs><clipPath id="logo-badge"><rect x="0" y="0" width="76" height="48"/></clipPath></defs>' +
-      '<rect x="0" y="0" width="76" height="48" fill="#F4C537"/>' +
+      '<rect x="0" y="0" width="76" height="48" fill="#F64C1C"/>' +
       '<g clip-path="url(#logo-badge)">' +
-        '<g class="g-lines"><rect x="2" y="16" width="22" height="3" fill="#0C0C12" opacity=".9"/><rect x="8" y="23" width="16" height="3" fill="#0C0C12" opacity=".7"/><rect x="14" y="30" width="10" height="3" fill="#0C0C12" opacity=".5"/></g>' +
+        '<g class="g-lines"><rect x="2" y="16" width="22" height="3" fill="#EAE6E0" opacity=".9"/><rect x="8" y="23" width="16" height="3" fill="#EAE6E0" opacity=".7"/><rect x="14" y="30" width="10" height="3" fill="#EAE6E0" opacity=".5"/></g>' +
         '<g class="g-car"><g transform="translate(18,12) scale(0.46)">' +
-          '<polygon points="8,24 16,17 34,14 46,10 58,10 64,15 84,19 112,25 116,30 8,30" fill="#0C0C12"/>' +
-          '<rect x="2" y="6" width="16" height="4" fill="#0C0C12"/><rect x="6" y="9" width="4" height="15" fill="#0C0C12"/>' +
-          '<circle cx="26" cy="31" r="10" fill="#F64C1C" stroke="#0C0C12" stroke-width="3"/>' +
-          '<circle cx="92" cy="32" r="8.5" fill="#F64C1C" stroke="#0C0C12" stroke-width="3"/>' +
+          '<polygon points="8,24 16,17 34,14 46,10 58,10 64,15 84,19 112,25 116,30 8,30" fill="#EAE6E0"/>' +
+          '<rect x="2" y="6" width="16" height="4" fill="#EAE6E0"/><rect x="6" y="9" width="4" height="15" fill="#EAE6E0"/>' +
+          '<circle cx="26" cy="31" r="10" fill="#F4C537" stroke="#0C0C12" stroke-width="3"/>' +
+          '<circle cx="92" cy="32" r="8.5" fill="#F4C537" stroke="#0C0C12" stroke-width="3"/>' +
         '</g></g>' +
       '</g>' +
       '<text x="88" y="21" font-family="Oswald, Arial Narrow, sans-serif" font-weight="700" font-size="20" letter-spacing="2.5" fill="#EAE6E0">PACE <tspan fill="#F4C537">&amp;</tspan></text>' +
@@ -73,7 +74,7 @@
 
     var ul = U.el("ul");
     NAV.forEach(function (item, i) {
-      var li = U.el("li");
+      var li = U.el("li", { className: item.desktopOnly ? "nav-desktop-only" : null });
       var kids = children(item);
       if (kids.length) {
         var menuId = "nav-menu-" + item.id;
@@ -191,8 +192,28 @@
     host.replaceWith(footer);
   }
 
+  /* Logo drive (Sanith): starts on hover or keyboard focus, keeps looping while the
+     pointer stays, and always completes the current lap after it leaves. */
+  function logoDrive() {
+    U.all(".logo").forEach(function (logo) {
+      var car = logo.querySelector(".g-car");
+      if (!car) return;
+      var engaged = false;
+      function start() { engaged = true; logo.classList.add("is-driving"); }
+      function release() { engaged = false; }
+      logo.addEventListener("mouseenter", start);
+      logo.addEventListener("focus", function () { if (logo.matches(":focus-visible")) start(); });
+      logo.addEventListener("mouseleave", release);
+      logo.addEventListener("blur", release);
+      // Each lap ends with the car back in place, so stopping here never jumps.
+      car.addEventListener("animationiteration", function () { if (!engaged) logo.classList.remove("is-driving"); });
+      car.addEventListener("animationcancel", function () { logo.classList.remove("is-driving"); });
+    });
+  }
+
   renderHeader();
   renderFooter();
+  logoDrive();
   // Reveal runs after every page script has rendered its content.
   window.addEventListener("load", function () { U.reveal(); });
 })();

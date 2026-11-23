@@ -123,12 +123,14 @@ a:hover { color: var(--color-link-hover); }
 .site-header--overlay.is-scrolled, .site-header--overlay.is-open { background: var(--header-solid); border-bottom-color: var(--color-line); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
 .header-inner { display: flex; align-items: center; justify-content: space-between; gap: var(--space-5); min-height: var(--header-h); }
 
-/* Logo: Sanith's car badge, recolored. On hover/focus the car drives off and loops back. */
+/* Logo: Sanith's car badge, recolored. On hover/focus the car drives off and loops back.
+   js/layout.js adds .is-driving on hover/focus and removes it only at the end of a loop,
+   so the car always finishes its lap instead of snapping back when the cursor leaves. */
 .logo { display: inline-flex; align-items: center; line-height: 0; text-decoration: none; flex-shrink: 0; }
 .logo svg { height: 40px; width: auto; }
 .logo .g-car, .logo .g-lines { transform-box: view-box; }
-.logo:hover .g-car, .logo:focus-visible .g-car { animation: g-drive 0.9s cubic-bezier(.55, 0, .25, 1) infinite; }
-.logo:hover .g-lines, .logo:focus-visible .g-lines { animation: g-streak 0.9s linear infinite; }
+.logo.is-driving .g-car { animation: g-drive 0.9s cubic-bezier(.55, 0, .25, 1) infinite; }
+.logo.is-driving .g-lines { animation: g-streak 0.9s linear infinite; }
 @keyframes g-drive {
   0% { transform: translateX(0); } 12% { transform: translateX(-3px); }
   50% { transform: translateX(70px); } 50.1% { transform: translateX(-70px); } 100% { transform: translateX(0); }
@@ -223,6 +225,7 @@ a:hover { color: var(--color-link-hover); }
   .nav-link:hover::after, .nav-link[aria-current="page"]::after, .nav-link.is-current::after { transform: scaleY(1); }
   .nav-menu { position: static; min-width: 0; padding: 0 0 var(--space-3) var(--space-4); border: 0; box-shadow: none; background: transparent; transform: none; transition: none; display: none; opacity: 1; visibility: visible; }
   .nav-menu.is-open { display: block; }
+  .nav-desktop-only { display: none; }   /* e.g. Home: the logo links home on smaller screens */
   .nav-cta-item { margin: var(--space-4) 0 0; border-bottom: 0 !important; }
   .nav-cta { width: 100%; justify-content: center; }
 }

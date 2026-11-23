@@ -74,6 +74,8 @@ a.tag:hover { color: var(--tag-fg); filter: brightness(1.1); }
 .filter button:hover, .chip:hover { transform: translateY(-1px); color: var(--color-text); box-shadow: inset 0 0 0 1px var(--color-text-subtle); }
 .filter button[aria-pressed="true"], .chip:has(input:checked) { background: var(--color-accent); color: var(--color-on-accent); box-shadow: none; }
 .filter--orange button[aria-pressed="true"] { background: var(--color-accent-2); }
+/* Series buttons in the "series you follow" filter take their tag colors when selected (.tag--<id> sets the variables) */
+.filter button.filter-series[aria-pressed="true"] { background: var(--tag-bg); color: var(--tag-fg); box-shadow: inset 0 0 0 2px var(--tag-ring); }
 .chip input { width: 16px; height: 16px; margin: 0; accent-color: var(--raw-black); }
 .chip:has(input:focus-visible) { outline: 3px solid var(--color-focus); outline-offset: 2px; }
 
@@ -138,6 +140,9 @@ figure { margin: 0; }
 .card--text:hover { border-top-color: var(--color-accent-2); background: var(--color-surface-2); transform: translateY(-3px); }
 .card--text .card-body { padding-top: 0; }
 .card--text .card-title { font: 700 1.15rem/1.35 var(--font-body); text-transform: none; }
+/* Home's featured cards: our short headline, then its summary */
+.card--summary .card-title { font-size: 1.3rem; line-height: 1.25; }
+.card--summary .card-text { margin-top: var(--space-1); line-height: 1.55; }
 /* Team graphic cards (Evelin): whole graphic sharp over a blurred copy, never cropped */
 .card-media--graphic { isolation: isolate; }
 .card-media--graphic .media-bg { position: absolute; inset: -12%; width: 124%; height: 124%; max-width: none; z-index: -1; object-fit: cover; filter: blur(24px) brightness(0.5) saturate(1.3); transform: none !important; }
@@ -188,6 +193,9 @@ figure { margin: 0; }
 @keyframes hero-reveal { from { opacity: 0; filter: brightness(.2); } to { opacity: 1; filter: none; } }
 @keyframes hero-drift { from { transform: scale(1); } to { transform: scale(1.06); } }
 .hero::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--shade-hero); }
+/* The hero is a flex column, so its .wrap children need full width; otherwise
+   margin: 0 auto shrinks them to their text and centers them off the page grid. */
+.hero > .wrap { width: 100%; }
 .hero-inner { padding-top: calc(var(--header-h) + var(--space-8)); padding-bottom: var(--space-6); }
 .hero h1 { font-size: var(--text-hero); line-height: 0.86; margin-bottom: var(--space-5); max-width: 12ch; }
 .hero h1 .hl { color: var(--color-accent); }

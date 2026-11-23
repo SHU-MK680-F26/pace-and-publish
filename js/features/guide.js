@@ -142,8 +142,23 @@
   function tagsHtml(keys) { return U.tagsHtml(keys); }
   function entryNum(i) { return '<span class="entry-num" aria-hidden="true">' + U.pad(i + 1) + "</span>"; }
 
+  /* ---------- Series filters (Terminology and Racetracks) ----------
+     Same behavior as the site-wide series filter: "All" first and selected by default;
+     picking a series shows just that one; more can be added or removed in any combination;
+     "All", removing the last one, or picking every series goes back to everything.
+     A selection is a list of keys; an empty list means "All". */
+  function toggleSeries(list, key, allKeys) {
+    if (key === "all") return [];
+    var next = list.indexOf(key) === -1 ? list.concat([key]) : list.filter(function (k) { return k !== key; });
+    return next.length === allKeys.length ? [] : next;
+  }
+  function namesList(keys, label) {
+    var n = keys.map(label);
+    return n.length < 2 ? n.join("") : n.slice(0, -1).join(", ") + " and " + n[n.length - 1];
+  }
+
   /* ---------- Terminology ---------- */
-  var termFilter = "all", termTopic = null;
+  var termFilter = [], termKeys = [], termTopic = null;
   var topicByKey = indexById(TOPICS, "key");
 
   function renderTerms() {
@@ -164,8 +179,9 @@
     var keys = U.seriesIds().concat(HISTORY.map(function (s) { return s.key; })).filter(function (k, i, a) {
       return a.indexOf(k) === i && k !== "other" && TERMS.some(function (t) { return t.series.indexOf(k) !== -1; });
     });
+    termKeys = keys;
     $("term-filter").innerHTML = '<button type="button" data-term-filter="all" aria-pressed="true">All series</button>' +
-      keys.map(function (k) { return '<button type="button" data-term-filter="' + k + '" aria-pressed="false">' + esc(seriesLabel(k)) + "</button>"; }).join("");
+      keys.map(function (k) { return '<button type="button" class="filter-series tag--' + k + '" data-term-filter="' + k + '" aria-pressed="false">' + esc(seriesLabel(k)) + "</button>"; }).join("");
     $("term-topics").innerHTML = TOPICS.map(function (tp) {
       return '<button type="button" data-term-topic="' + tp.key + '" aria-pressed="false">' + esc(tp.label) + "</button>";
     }).join("");
@@ -183,15 +199,18 @@
   }
 
   function applyTermFilter(key) {
-    if (key) termFilter = key;
+    if (key) termFilter = toggleSeries(termFilter, key, termKeys);
     var shared = $("term-shared").checked;
-    $("term-shared").disabled = termFilter === "all";
-    U.all("[data-term-filter]").forEach(function (b) { b.setAttribute("aria-pressed", String(b.getAttribute("data-term-filter") === termFilter)); });
+    $("term-shared").disabled = !termFilter.length;
+    U.all("[data-term-filter]").forEach(function (b) {
+      var k = b.getAttribute("data-term-filter");
+      b.setAttribute("aria-pressed", String(k === "all" ? !termFilter.length : termFilter.indexOf(k) !== -1));
+    });
     U.all("[data-term-topic]").forEach(function (b) { b.setAttribute("aria-pressed", String(b.getAttribute("data-term-topic") === termTopic)); });
     var shown = 0;
     U.all("#terms-list .term").forEach(function (el) {
       var tags = el.getAttribute("data-series").split(" ");
-      var visible = termFilter === "all" || tags.indexOf(termFilter) !== -1 || (shared && tags.indexOf("all") !== -1);
+      var visible = !termFilter.length || tags.some(function (k) { return termFilter.indexOf(k) !== -1; }) || (shared && tags.indexOf("all") !== -1);
       if (visible && termTopic) visible = el.getAttribute("data-topics").split(" ").indexOf(termTopic) !== -1;
       el.hidden = !visible;
       if (visible) shown++;
@@ -205,7 +224,7 @@
     });
     $("az-bar").innerHTML = az;
     $("term-count").textContent = "Showing " + shown + " of " + TERMS.length + " terms" +
-      (termTopic ? " in " + topicByKey[termTopic].name : "") + (termFilter === "all" ? "" : " for " + seriesName(termFilter)) + ".";
+      (termTopic ? " in " + topicByKey[termTopic].name : "") + (termFilter.length ? " for " + namesList(termFilter, seriesName) : "") + ".";
   }
 
   /* ---------- Tactics ---------- */
@@ -221,7 +240,8 @@
 
   /* ---------- Racetracks: list, entries (with Evelin's circuit detail), Leaflet map ---------- */
   var sortedTracks = TRACKS.slice().sort(byName);
-  var map = null, markers = {}, currentFilter = "all";
+  var map = null, markers = {}, currentFilter = [], trackKeys = [];   // [] = All
+  function trackMatches(t) { return !currentFilter.length || t.series.some(function (k) { return currentFilter.indexOf(k) !== -1; }); }
 
   function trackFacts(t) {
     var d = t.detail || {};
@@ -264,8 +284,9 @@
     var used = U.seriesIds().concat(HISTORY.map(function (s) { return s.key; })).filter(function (k, i, a) {
       return a.indexOf(k) === i && TRACKS.some(function (t) { return t.series.indexOf(k) !== -1; });
     });
+    trackKeys = used;
     $("track-filter").innerHTML = '<button type="button" data-filter="all" aria-pressed="true">All</button>' +
-      used.map(function (k) { return '<button type="button" data-filter="' + k + '" aria-pressed="false">' + esc(seriesLabel(k)) + "</button>"; }).join("");
+      used.map(function (k) { return '<button type="button" class="filter-series tag--' + k + '" data-filter="' + k + '" aria-pressed="false">' + esc(seriesLabel(k)) + "</button>"; }).join("");
 
     if (window.matchMedia && window.matchMedia("(hover: none)").matches && $("map-intro")) {
       $("map-intro").textContent = "Tap a marker for a summary, or use the list beside the map.";
@@ -320,7 +341,7 @@
       m.addTo(map); markers[t.id] = m; bounds.push([t.lat, t.lng]);
     });
     map.fitBounds(bounds, { padding: [30, 30] });
-    applyFilter(currentFilter);
+    applyFilter();
   }
 
   /* Basic (built-in outline, works offline and from file://) or Detailed (OpenStreetMap tiles, needs a web address). */
@@ -372,11 +393,14 @@
   }
   function highlightRow(id, on) { var li = document.querySelector('#track-list li[data-id="' + id + '"]'); if (li) li.classList.toggle("is-active", on); }
   function applyFilter(key) {
-    currentFilter = key;
-    U.all("#track-filter button").forEach(function (b) { b.setAttribute("aria-pressed", String(b.getAttribute("data-filter") === key)); });
+    if (key) currentFilter = toggleSeries(currentFilter, key, trackKeys);
+    U.all("#track-filter button").forEach(function (b) {
+      var k = b.getAttribute("data-filter");
+      b.setAttribute("aria-pressed", String(k === "all" ? !currentFilter.length : currentFilter.indexOf(k) !== -1));
+    });
     var shown = 0;
     TRACKS.forEach(function (t) {
-      var visible = key === "all" || t.series.indexOf(key) !== -1;
+      var visible = trackMatches(t);
       if (visible) shown++;
       var li = document.querySelector('#track-list li[data-id="' + t.id + '"]');
       if (li) li.hidden = !visible;
@@ -385,12 +409,12 @@
         if (!visible && map.hasLayer(markers[t.id])) map.removeLayer(markers[t.id]);
       }
     });
-    $("track-list-title").textContent = (key === "all" ? "All tracks" : seriesLabel(key) + " tracks") + " (" + shown + ")";
+    $("track-list-title").textContent = (currentFilter.length ? namesList(currentFilter, seriesLabel) + " tracks" : "All tracks") + " (" + shown + ")";
   }
   function locate(id) {
     var t = BY.track[id];
     if (!t || !map) { location.hash = "#track-" + id; return; }
-    if (currentFilter !== "all" && t.series.indexOf(currentFilter) === -1) applyFilter("all");
+    if (!trackMatches(t)) applyFilter("all");
     map.setView([t.lat, t.lng], 7);
     markers[id].openPopup();
     $("map-top").scrollIntoView({ block: "start" });
@@ -449,7 +473,6 @@
         return '<li><a href="' + esc(s.url) + '" rel="noopener" target="_blank">' + esc(s.title) + '</a> <span class="used-in">Used in: ' + esc(s.used.slice(0, 8).join(", ")) + (s.used.length > 8 ? " and " + (s.used.length - 8) + " more" : "") + "</span></li>";
       }).join("") + "</ol>";
     }
-    var news = collect([{ list: PP.news || [], label: function (n) { return n.title; }, sources: function (n) { return n.source ? [{ title: n.source.site, url: n.source.url }] : []; } }]);
     var tracks = collect([{ list: TRACKS, label: function (t) { return t.shortName || t.name; }, sources: function (t) {
       var d = t.detail || {}, s = (t.sources || []).slice();
       if (d.source) s.push({ title: d.source.title, url: d.source.url });
@@ -467,7 +490,6 @@
     }).join("");
     $("credits").innerHTML =
       "<section><h2>Live data</h2><ul>" + live + "</ul></section>" +
-      "<section><h2>News stories</h2>" + list(news) + "</section>" +
       "<section><h2>Racetracks</h2>" + list(tracks) + "</section>" +
       "<section><h2>Historical races</h2>" + list(races) + "</section>" +
       "<section><h2>Terms, tactics and series</h2>" + list(learn) + "</section>" +

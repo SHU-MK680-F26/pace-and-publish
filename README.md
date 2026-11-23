@@ -14,8 +14,8 @@ It merges the four team sites (Ben, Evelin, Miranda, Sanith) into one. The origi
 
 | Page | File | Built from |
 |---|---|---|
-| Home | `index.html` | Hero video (Sanith), next-up countdown (Miranda), news (Evelin), Start-here path and Instagram card (Ben) |
-| News | `news.html` | Team stories + official headlines, series filter and search |
+| Home | `index.html` | Hero video (Sanith), next-up countdown (Miranda), latest official headlines, series posters (Evelin), Start-here path and Instagram card (Ben) |
+| News | `news.html` | Official headlines from each series' news page, series filter and search |
 | Series ▾ | `series.html?id=<id>` | One template for every series: results, news, line-ups, schedule |
 | Calendar | `calendar.html` | Miranda's calendar tool with .ics export |
 | Weekend planner | `planner.html` | Sanith's planner with clash helper, on real data |
@@ -39,8 +39,8 @@ archive/      the four original sites, unchanged, for reference
 
 ## Common jobs
 
-- **Add a news story, track, term, series, photo or page:** follow [docs/adding-content.md](docs/adding-content.md).
-- **Refresh schedules, results, line-ups and headlines:** `python3 scripts/refresh.py` (about four minutes; one request per second). Refresh only some series with `python3 scripts/refresh.py nascar indycar`.
+- **Add headlines or captions, a track, term, series, photo or page:** follow [docs/adding-content.md](docs/adding-content.md).
+- **Refresh schedules, results, line-ups and headlines:** `python3 scripts/refresh.py` (about four minutes; one request per second). Refresh only some series with `python3 scripts/refresh.py nascar indycar`. Then run **`/caption-headlines`** in Claude Code to write captions for new headlines (free; see [docs/adding-content.md](docs/adding-content.md#news-official-headlines)).
 - **Before committing:** `python3 scripts/check.py`, then open a Learn page and check the browser console.
 
 ## Where the data comes from

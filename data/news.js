@@ -1,5 +1,7 @@
 /* =====================================================================
    Pace & Publish data: team news stories (hand-written).
+   NOT SHOWN ON THE SITE since 2026-11-23: News, Home and series pages show only
+   official headlines (data/generated/headlines.js). Kept for reference.
    ---------------------------------------------------------------------
    Stories the team wrote from its approved Instagram posts (Weeks 1-3).
    Merged from Evelin's 14 articles (text) and Sanith's 10 (story types and

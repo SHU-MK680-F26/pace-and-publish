@@ -11,19 +11,20 @@ Rules for all content: our own words, a named official source for every fact, no
 
 ---
 
-## A news story
+## News (official headlines)
 
-File: `data/news.js`. Copy the template at the top and fill in:
+The News page, Home's "Latest news" and each series page show only official headlines, read from each series' own news page by `scripts/refresh.py` into `data/generated/headlines.js`. Each item has two fields in our own words (see [brand.md](brand.md)), and every card links to the full article:
+- **`caption`:** our short headline, 6 to 14 words. Shown on every news card.
+- **`summary`:** one or two sentences, at most 45 words, adding the key details. Shown under the headline on Home's six featured cards.
 
-- `id`: unique, lowercase with hyphens (e.g. `f1-009`). Never change it once published: links use it (`news.html#f1-009`).
-- `date`: the day the team post went out, `YYYY-MM-DD`.
-- `series`: one or more ids from `data/series.js`, e.g. `["formula-1"]`.
-- `type`: `results`, `recap`, `preview` or `feature`.
-- `title`, `summary`, `body` (a list of paragraphs).
-- `source`: `{ site: "formula1.com", url: "https://..." }`, the official page the facts come from.
-- Optional: `podium` (results), `graphic` (our Instagram image in `assets/images/team/`) with `graphicAlt`, `photo` (a photo id), `featured: true` (lead story on Home).
+- **Get new headlines:** `python3 scripts/refresh.py` (or name series ids to refresh only those).
+- **Write captions after each refresh:** in Claude Code, in this project, run **`/caption-headlines`**. Claude reads each new official article and writes the missing headline and summary in the brand voice. This is the same way Miranda's site worked, with no API key and no extra cost (it uses your Claude plan). The refresh ends by saying how many headlines are waiting. Review the captions it shows you before committing.
+  - Under the hood: `python3 scripts/captions.py todo` lists items missing a headline or summary, with their article text and the rules; `python3 scripts/captions.py apply` saves them (JSON `{"<sourceUrl>": {"caption": "...", "summary": "..."}}` on stdin), filling only missing fields. Saved captions carry `captionBy: "Claude Code"` and `captionedAt`.
+  - Until a headline is captioned, its card shows "New article on <site>". Never show the source's own headline (Miranda's PRD rule).
+  - To fix a caption by hand, edit its `caption` in `data/generated/headlines.js` (and its `captionBy`). Every refresh keeps it, matched by `sourceUrl`.
+- **Optional, paid:** `scripts/refresh.py` can write captions itself through the Anthropic API (`claude-opus-5-5`). It runs only when `ANTHROPIC_API_KEY` is set or with `--api-captions`, and needs `python3 -m pip install anthropic`. `--captions-only` captions existing headlines that way without refetching; `--no-captions` turns it off.
 
-It then appears on News, Home (newest first) and that series' page.
+`data/news.js` still holds the team's 14 stories written from the Week 1-3 Instagram posts, but no page shows them (decision of 2026-11-23).
 
 ## Race weekends a script can't read
 

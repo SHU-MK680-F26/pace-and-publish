@@ -25,14 +25,10 @@
     var host = U.$("home-news");
     function draw() {
       host.textContent = "";
-      var all = PP.newsFeature.items(U.mySeries());
-      var stories = all.filter(function (i) { return i.kind === "story"; });
-      var heads = all.filter(function (i) { return i.kind === "headline"; }).slice(0, 4);
-      var lead = stories.filter(function (i) { return i.featured; })[0] || stories[0];
+      // The six newest official headlines for the series you follow.
       var grid = el("div", { className: "card-grid" });
-      if (lead) grid.appendChild(PP.newsFeature.card(lead, { lead: true, headingLevel: "h3" }));
-      stories.filter(function (i) { return i !== lead; }).slice(0, 4).forEach(function (i) { grid.appendChild(PP.newsFeature.card(i, {})); });
-      heads.forEach(function (i) { grid.appendChild(PP.newsFeature.card(i, {})); });
+      // Featured cards: our short headline with its summary underneath.
+      PP.newsFeature.items(U.mySeries()).slice(0, 6).forEach(function (i) { grid.appendChild(PP.newsFeature.card(i, { summary: true })); });
       if (!grid.children.length) host.appendChild(el("p", { className: "empty", text: "No news yet for the series you follow." }));
       else host.appendChild(grid);
     }

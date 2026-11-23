@@ -6,7 +6,7 @@ All data are plain `.js` files that add to one global, `window.PP`. (A page open
 |---|---|---|---|
 | `data/series.js` | `PP.series` | hand | every page (nav, tags, filters) |
 | `data/photos.js` | `PP.photos` | hand | any page with a photo; Sources |
-| `data/news.js` | `PP.news` | hand | Home, News, series pages |
+| `data/news.js` | `PP.news` | hand | not shown (kept for reference; see decisions.md) |
 | `data/schedule-manual.js` | `PP.scheduleManual` | hand | Calendar, Planner, Home, series pages |
 | `data/sources.js` | `PP.sources` | hand | helpers for the guide files below |
 | `data/series-history.js` | `PP.seriesHistory` | hand | Legacy, series pages |
@@ -45,10 +45,10 @@ PP.schedule = {
   }
 }
 PP.lineups   = { teamColours: [{ series, team, colour }], series: { id: [{ class, team, drivers: [], sourceUrl }] } }
-PP.headlines = { series: { id: [{ date, type: "news" | "hiring", caption, sourceUrl }] } }
+PP.headlines = { series: { id: [{ date, type: "news" | "hiring", caption, summary?, captionBy?, captionedAt?, sourceUrl }] } }
 ```
 
-A headline's `caption` is our own one-line summary of the official article. A new headline shows "New article on <site>" until someone writes its caption. **Captions are the one field you may edit by hand in `data/generated/headlines.js`:** `refresh.py` carries every caption over to the next run, matched by `sourceUrl`.
+A headline's `caption` is our own short headline (6–14 words) for the official article, shown on every card; its `summary` is one or two sentences of detail, shown under the headline on Home. Captions are written with `/caption-headlines` in Claude Code (or, optionally, by `refresh.py` through the paid API), recording `captionBy` and `captionedAt`; see docs/adding-content.md. Until then the card shows "New article on <site>". **Captions are the one field you may edit by hand in `data/generated/headlines.js`:** every caption carries over to the next run, matched by `sourceUrl`, and is never rewritten.
 
 ## Browser storage
 
