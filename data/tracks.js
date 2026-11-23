@@ -1,6 +1,7 @@
 /* Pace & Publish data: racetracks
    Moved from Ben's starter guide (archive/brand-site-ben/website/script.js) with its text unchanged.
-   How to add an entry: docs/adding-content.md. Source helpers (wiki(), official(), ...) live in data/sources.js. */
+   How to add an entry: docs/adding-content.md. Photos: "photo" and "map" are ids in data/photos.js.
+   Monaco, Silverstone and Suzuka carry Evelin's circuit detail (turns, laps, lap record) in "detail". Source helpers (wiki(), official(), ...) live in data/sources.js. */
 (function (S) {
   "use strict";
   var PP = window.PP;
@@ -28,6 +29,8 @@
      ===================================================================== */
   PP.tracks = [
     { id: "monaco", name: "Circuit de Monaco", shortName: "Monaco", country: "Monaco",
+      map: "map-monaco",
+      detail: {"turns": "19", "turnsSource": {"title": "formula1.com circuit guide", "url": "https://www.formula1.com/en/latest/article/circuit-guide-everything-you-need-to-know-about-the-circuit-de-monaco.vFsmfGHr6RWyLFtxi58wi"}, "laps": "78", "raceDistance": "260.286 km", "lapRecord": "1:12.909", "lapRecordHolder": "Lewis Hamilton (2021)", "firstGrandPrix": "1950", "fact": "Racing first came to the streets of the Principality in 1929. The race was on the calendar in the first year of the Formula 1 World Championship, 1950, and has been on every calendar since 1955.", "event": "Formula 1 Louis Vuitton Grand Prix de Monaco 2026", "source": {"title": "formula1.com", "url": "https://www.formula1.com/en/racing/2026/monaco"}, "checked": "2026-11-12"},
       lat: 43.7347, lng: 7.4206, series: ["formula-1"], type: "street",
       summary: "A short, tight street circuit through Monte Carlo and around the harbor of Monaco.",
       body: [
@@ -36,15 +39,12 @@
       ],
       facts: [{ label: "Length", value: "3.337 km" }],
       related: { terms: ["street-circuit", "triple-crown"] },
-      image: {
-        src: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Circuit_de_Monaco%2C_April_1%2C_2018_SkySat_%28cropped%29.jpg/960px-Circuit_de_Monaco%2C_April_1%2C_2018_SkySat_%28cropped%29.jpg",
-        alt: "Satellite view of Monaco's harbor, lined with yachts, with the city streets that form the circuit wrapping around it.",
-        author: "Planet Labs, Inc.", license: "CC BY-SA 4.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
-        sourceUrl: "https://commons.wikimedia.org/wiki/File:Circuit_de_Monaco,_April_1,_2018_SkySat_(cropped).jpg"
-      },
+      photo: "track-monaco",
       sources: [wiki("Circuit_de_Monaco"), f1Circuit("monaco", "Monaco Grand Prix circuit page"), racingCircuits("europe/monaco/monte-carlo.html", "Monte Carlo")] },
 
     { id: "silverstone", name: "Silverstone Circuit", shortName: "Silverstone", country: "United Kingdom",
+      map: "map-silverstone", photo: "track-silverstone",
+      detail: {"turns": "18", "turnsSource": {"title": "formula1.com circuit guide", "url": "https://www.formula1.com/en/latest/article/circuit-guide-everything-you-need-to-know-about-silverstone-2026.5Sl0O8g393enBWVIkjRzOr"}, "laps": "52", "raceDistance": "306.198 km", "lapRecord": "1:27.097", "lapRecordHolder": "Max Verstappen (2020)", "firstGrandPrix": "1950", "fact": "Silverstone hosted the first-ever round of the Formula 1 World Championship on May 13, 1950. Giuseppe Farina won it in an Alfa Romeo 158.", "event": "Formula 1 Pirelli British Grand Prix 2026", "source": {"title": "formula1.com", "url": "https://www.formula1.com/en/racing/2026/great-britain"}, "checked": "2026-11-12"},
       lat: 52.0710, lng: -1.0160, series: ["formula-1", "motogp", "wec"], type: "permanent",
       summary: "The home of the British Grand Prix and the venue of the first Formula One World Championship race in 1950.",
       body: [
@@ -75,15 +75,12 @@
       ],
       facts: [{ label: "First Grand Prix", value: "1925" }, { label: "Length", value: "7.004 km" }],
       related: { terms: ["endurance-racing"] },
-      image: {
-        src: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/2022_6_Hours_of_Spa-Francorchamps_-_Eau_Rouge_Corner.jpg/960px-2022_6_Hours_of_Spa-Francorchamps_-_Eau_Rouge_Corner.jpg",
-        alt: "Two endurance prototype race cars driving through the Eau Rouge corner at Spa-Francorchamps beside a large grandstand.",
-        author: "United Autosports", license: "CC BY-SA 2.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/2.0/",
-        sourceUrl: "https://commons.wikimedia.org/wiki/File:2022_6_Hours_of_Spa-Francorchamps_-_Eau_Rouge_Corner.jpg"
-      },
+      photo: "track-spa",
       sources: [wiki("Circuit_de_Spa-Francorchamps"), racingCircuits("europe/belgium/spa-francorchamps.html", "Spa-Francorchamps")] },
 
     { id: "suzuka", name: "Suzuka Circuit", shortName: "Suzuka", country: "Japan",
+      map: "map-suzuka",
+      detail: {"turns": "18", "turnsSource": {"title": "suzukacircuit.jp course guide (4-wheel course)", "url": "https://www.suzukacircuit.jp/eng/course_s/"}, "laps": "53", "raceDistance": "307.471 km", "lapRecord": "1:30.965", "lapRecordHolder": "Kimi Antonelli (2025)", "firstGrandPrix": "1987", "fact": "Suzuka was built in 1962 as Honda's own test track, designed by John Hugenholtz. Formula 1 first raced there in 1987.", "event": "Formula 1 Aramco Japanese Grand Prix 2026", "source": {"title": "formula1.com", "url": "https://www.formula1.com/en/racing/2026/japan"}, "checked": "2026-11-12", "mapNote": "The map was drawn in 2005 and prints its own length (5.8153 km). The official length today is 5.807 km (suzukacircuit.jp), which is the figure shown in the stats."},
       lat: 34.8417, lng: 136.5389, series: ["formula-1"], type: "permanent",
       summary: "A figure-of-eight circuit built as a Honda test track in 1962, where the back straight crosses over the front section.",
       body: [
@@ -92,12 +89,7 @@
       ],
       facts: [{ label: "Designed", value: "1962" }, { label: "First F1 race", value: "1987" }, { label: "Length", value: "5.807 km" }],
       related: { terms: ["esses", "hairpin", "chicane"] },
-      image: {
-        src: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Suzuka_International_Racing_Course%2C_July_10%2C_2018_SkySat.jpg/960px-Suzuka_International_Racing_Course%2C_July_10%2C_2018_SkySat.jpg",
-        alt: "Satellite view of Suzuka Circuit showing its figure-of-eight layout among fields and buildings.",
-        author: "Planet Labs, Inc.", license: "CC BY-SA 4.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
-        sourceUrl: "https://commons.wikimedia.org/wiki/File:Suzuka_International_Racing_Course,_July_10,_2018_SkySat.jpg"
-      },
+      photo: "track-suzuka",
       sources: [wiki("Suzuka_International_Racing_Course"), f1Circuit("japan", "Japanese Grand Prix circuit page"), racingCircuits("asia/japan/suzuka.html", "Suzuka")] },
 
     { id: "interlagos", name: "Autódromo José Carlos Pace (Interlagos)", shortName: "Interlagos", country: "Brazil",
@@ -341,12 +333,7 @@
       ],
       facts: [{ label: "Built", value: "1957" }, { label: "Length", value: "2.238 miles" }, { label: "Elevation change", value: "180 ft" }],
       related: { terms: ["road-course"] },
-      image: {
-        src: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Laguna_Seca%27s_Corkscrew_-_2014_%281%29.jpg/960px-Laguna_Seca%27s_Corkscrew_-_2014_%281%29.jpg",
-        alt: "The Corkscrew at Laguna Seca: an empty track drops steeply downhill between trees under a blue sky.",
-        author: "菅野崇", license: "CC BY-SA 3.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/",
-        sourceUrl: "https://commons.wikimedia.org/wiki/File:Laguna_Seca%27s_Corkscrew_-_2014_(1).jpg"
-      },
+      photo: "track-laguna-seca",
       sources: [wiki("Laguna_Seca"), INDYCAR_LAGUNA, racingCircuits("north-america/usa/laguna-seca.html", "Laguna Seca")] },
 
     { id: "mid-ohio", name: "Mid-Ohio Sports Car Course", shortName: "Mid-Ohio", country: "United States",
