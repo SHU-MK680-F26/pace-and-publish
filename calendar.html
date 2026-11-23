@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Race calendar | Pace &amp; Publish</title>
+<meta name="description" content="Every race weekend for F1, MotoGP, WEC, NASCAR, IMSA and IndyCar in one calendar, in track time or yours, ready to add to your own calendar.">
+<meta name="theme-color" content="#0C0C12">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="assets/images/logo/logo-icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/components.css">
+</head>
+<body data-page="calendar">
+<div id="site-header"></div>
+
+<main id="main">
+  <div class="wrap">
+    <header class="page-head">
+      <div class="stripe" aria-hidden="true"><span></span></div>
+      <h1 tabindex="-1">Race calendar</h1>
+      <p class="page-intro">Every race weekend for the series you follow, in one list. Open a weekend for its sessions, switch between track time and your own, and add them to your calendar.</p>
+    </header>
+    <div class="toolbar no-print">
+      <div class="field"><span class="field-label">Series you follow</span><div id="cal-series"></div></div>
+      <label class="check"><input type="checkbox" id="cal-upcoming" checked> Upcoming weekends only</label>
+    </div>
+    <p class="result-count" id="cal-count" aria-live="polite"></p>
+    <section class="add-to-cal" id="add-to-cal" aria-labelledby="add-title" hidden>
+      <h2 id="add-title">Add these sessions to your calendar</h2>
+      <div class="btn-row">
+        <button type="button" class="btn btn--small" id="cal-apple">Apple Calendar</button>
+        <button type="button" class="btn btn--small" id="cal-google">Google Calendar</button>
+        <button type="button" class="btn btn--ghost btn--small" id="cal-other">Other app (.ics)</button>
+      </div>
+      <p class="hint" id="cal-help" aria-live="polite"></p>
+    </section>
+    <div id="calendar-out"></div>
+  </div>
+</main>
+
+<div id="site-footer"></div>
+<script src="data/series.js"></script>
+<script src="data/generated/schedule.js"></script>
+<script src="data/schedule-manual.js"></script>
+<script src="js/core.js"></script>
+<script src="js/layout.js"></script>
+<script src="js/features/schedule.js"></script>
+<script>PP.scheduleFeature.renderCalendar();</script>
+</body>
+</html>
