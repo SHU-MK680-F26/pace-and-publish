@@ -192,9 +192,6 @@ figure { margin: 0; }
 .hero h1 { font-size: var(--text-hero); line-height: 0.86; margin-bottom: var(--space-5); max-width: 12ch; }
 .hero h1 .hl { color: var(--color-accent); }
 .hero-intro { max-width: 46ch; font-size: var(--text-lg); color: var(--color-text-muted); margin-bottom: var(--space-5); }
-.hero-speedline { position: absolute; left: -30%; height: 3px; width: 30%; background: var(--color-accent-2); opacity: 0.85; z-index: 0; animation: speedline 3.6s var(--ease) 1.2s infinite; }
-.hero-speedline + .hero-speedline { background: var(--color-accent); height: 2px; animation-delay: 1.6s; }
-@keyframes speedline { 0% { transform: translateX(0); opacity: 0; } 10% { opacity: 0.85; } 60%, 100% { transform: translateX(480%); opacity: 0; } }
 .hero-credit { position: relative; z-index: 1; text-align: right; padding-bottom: var(--space-3); }
 .hero-next { position: relative; z-index: 1; border-top: 1px solid var(--color-line); background: rgba(12, 12, 18, 0.6); }
 
