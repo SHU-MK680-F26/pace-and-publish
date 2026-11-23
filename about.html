@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About | Pace &amp; Publish</title>
+<meta name="description" content="About Pace &amp; Publish, a fictional motorsport news brand and student project (MK-680) at Sacred Heart University.">
+<meta name="theme-color" content="#0C0C12">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="assets/images/logo/logo-icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/components.css">
+</head>
+<body data-page="about">
+<div id="site-header"></div>
+
+<main id="main">
+  <div class="wrap">
+    <header class="page-head">
+      <div class="stripe" aria-hidden="true"><span></span></div>
+      <h1 tabindex="-1">About</h1>
+      <p class="page-intro">Every series. One feed. Pace &amp; Publish brings news, schedules and results for six racing series together, plus a starter guide for new fans, all built on confirmed facts from official sources.</p>
+    </header>
+
+    <div class="about">
+      <div class="about-main">
+        <section class="about-block" aria-labelledby="story-title">
+          <div class="stripe stripe--mini" aria-hidden="true"><span></span></div>
+          <h2 id="story-title">Our story</h2>
+          <p>Fans who follow more than one racing series usually have to check several websites and apps to stay current. Pace &amp; Publish is a motorsport brand that brings those series together in one place: F1, MotoGP, WEC, NASCAR, IMSA and IndyCar.</p>
+          <p>It started on Instagram, where the team shares quick updates on what has been officially announced. This website is its home on the web: the news, the race calendar, a weekend planner that shows every session you follow in your own time zone, and a beginner's guide to the words, tactics, tracks and history behind the sport.</p>
+        </section>
+
+        <section class="about-block" aria-labelledby="audience-title">
+          <div class="stripe stripe--mini" aria-hidden="true"><span></span></div>
+          <h2 id="audience-title">Who it's for</h2>
+          <p><strong>Multi-series fans</strong> who want their news in one place. They often check in first thing in the morning after sleeping through a race, after work for a quick update, or at the start of a race week to see what's on and when.</p>
+          <p><strong>New fans</strong> who need terms and concepts explained from scratch. The Learn pages explain each idea across series and point out where series differ.</p>
+        </section>
+
+        <section class="about-block" aria-labelledby="standards-title">
+          <div class="stripe stripe--mini" aria-hidden="true"><span></span></div>
+          <h2 id="standards-title">Our standards</h2>
+          <p><strong>Official sources only.</strong> Facts come from each series' official website, and every story, result and schedule names its source. IMSA's site can't be read automatically, so IMSA news comes from sportscar365.com and says so.</p>
+          <p><strong>In our own words.</strong> We never copy or lightly reword another outlet's article.</p>
+          <p><strong>No rumors, no predictions, no favorites.</strong> A rumor is mentioned only when clearly labeled as unconfirmed. We never predict a result, and no team, driver or series gets extra emphasis.</p>
+        </section>
+
+        <section class="about-block" aria-labelledby="made-title">
+          <div class="stripe stripe--mini" aria-hidden="true"><span></span></div>
+          <h2 id="made-title">How this site was made</h2>
+          <p>Each team member first built their own version of the site with help from Claude, an AI model made by Anthropic. This site merges the four: Ben's starter guide and colors, Evelin's and Sanith's design and motion, Miranda's live schedules and results, and Sanith's weekend planner. The team set the direction at every step and reviewed the results.</p>
+          <p>Every fact on the site comes from a cited source, not from the AI's memory. AI can still make mistakes. If you spot an error, let us know on Instagram.</p>
+        </section>
+
+        <section class="about-block" aria-labelledby="team-title">
+          <div class="stripe stripe--mini" aria-hidden="true"><span></span></div>
+          <h2 id="team-title">The team</h2>
+          <ul class="team-list">
+            <li><strong>Benjamin Santangelo</strong><span class="subtle">Starter guide, brand colors</span></li>
+            <li><strong>Evelin Kamimura</strong><span class="subtle">Design system and circuits</span></li>
+            <li><strong>Miranda Bowers</strong><span class="subtle">Schedules, results and data</span></li>
+            <li><strong>Sanith Chandula</strong><span class="subtle">Weekend planner and logo</span></li>
+          </ul>
+        </section>
+      </div>
+
+      <aside class="about-side" aria-label="Pace &amp; Publish at a glance">
+        <h2>At a glance</h2>
+        <dl>
+          <div><dt>What it is</dt><dd>A fictional brand and student project (MK-680), Sacred Heart University</dd></div>
+          <div><dt>Covers</dt><dd id="covers">F1, MotoGP, WEC, NASCAR, IMSA and IndyCar</dd></div>
+          <div><dt>Built with</dt><dd>Claude (Anthropic), directed and reviewed by the team</dd></div>
+          <div><dt>Affiliation</dt><dd>None with any series, team or circuit</dd></div>
+        </dl>
+        <h2>Find us</h2>
+        <ul>
+          <li><a href="https://www.instagram.com/paceandpublish/" rel="noopener" target="_blank">@paceandpublish on Instagram<span class="visually-hidden"> (opens in a new tab)</span></a></li>
+          <li><a href="sources.html">Sources &amp; credits</a></li>
+        </ul>
+      </aside>
+    </div>
+  </div>
+</main>
+
+<div id="site-footer"></div>
+<script src="data/series.js"></script>
+<script src="js/core.js"></script>
+<script src="js/layout.js"></script>
+<script>
+  /* The "Covers" line follows the series registry, so adding a series updates it. */
+  (function () {
+    var names = PP.series.map(function (s) { return s.short; });
+    document.getElementById("covers").textContent = names.slice(0, -1).join(", ") + " and " + names[names.length - 1];
+  })();
+</script>
+</body>
+</html>
