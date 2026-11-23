@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>News | Pace &amp; Publish</title>
+<meta name="description" content="Motorsport news for F1, MotoGP, WEC, NASCAR, IMSA and IndyCar: our own stories and official headlines, every one with its source.">
+<meta name="theme-color" content="#0C0C12">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="assets/images/logo/logo-icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/components.css">
+</head>
+<body data-page="news">
+<div id="site-header"></div>
+
+<main id="main">
+  <div class="wrap">
+    <header class="page-head">
+      <div class="stripe" aria-hidden="true"><span></span></div>
+      <h1 tabindex="-1">News</h1>
+      <p class="page-intro">Our own stories, written from confirmed results, plus the latest headlines from each series' official site. Choose the series you follow: Home, the calendar and the planner remember it too.</p>
+    </header>
+
+    <div class="toolbar">
+      <div class="field"><span class="field-label" id="series-label">Series you follow</span><div id="news-series"></div></div>
+      <div class="field"><span class="field-label">Show</span><div id="news-kind"></div></div>
+      <div class="field search">
+        <label class="field-label" for="news-search">Search news</label>
+        <input class="input" type="search" id="news-search" placeholder="Driver, team, track…" autocomplete="off">
+      </div>
+    </div>
+    <p class="result-count" id="news-count" aria-live="polite"></p>
+    <div id="news-out"></div>
+  </div>
+</main>
+
+<div id="site-footer"></div>
+<script src="data/series.js"></script>
+<script src="data/photos.js"></script>
+<script src="data/news.js"></script>
+<script src="data/generated/schedule.js"></script>
+<script src="data/generated/headlines.js"></script>
+<script src="js/core.js"></script>
+<script src="js/layout.js"></script>
+<script src="js/features/news.js"></script>
+<script>PP.newsFeature.renderPage();</script>
+</body>
+</html>
