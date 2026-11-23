@@ -1,0 +1,93 @@
+/* =====================================================================
+   Pace & Publish design tokens
+   ---------------------------------------------------------------------
+   Two layers:
+     1. Raw palette  (--raw-*)  : Ben's brand colors. Never used directly
+                                  by components.
+     2. Semantic     (--color-*, --series-*, --space-*, ...): what each
+                                  value is FOR. Components use only these.
+   A rebrand = edit layer 1 (and maybe a few mappings in layer 2).
+
+   Breakpoints (CSS variables can't be used in @media, so they are fixed):
+     small  : max-width 599px   (phones)
+     medium : 600px – 1023px    (tablets, menu button still shown)
+     large  : min-width 1024px  (full nav)
+   ===================================================================== */
+
+:root {
+  /* ---------- 1. Raw palette (docs/brand.md) ---------- */
+  --raw-black:  #0C0C12;  /* Lights-Out Black */
+  --raw-white:  #EAE6E0;  /* Starting-Line White */
+  --raw-yellow: #F4C537;  /* Race-Paint Yellow */
+  --raw-orange: #F64C1C;  /* Flaming-Hot Orange */
+  --raw-navy:   #14286C;  /* Night-Drive Navy */
+
+  /* ---------- 2. Semantic colors ---------- */
+  --color-bg:            var(--raw-black);
+  --color-surface:       #15151C;   /* black + 4% white: cards, panels */
+  --color-surface-2:     #1E1E25;   /* black + 8% white: hover, raised */
+  --color-text:          var(--raw-white);
+  --color-text-muted:    rgba(234, 230, 224, 0.80);
+  --color-text-subtle:   rgba(234, 230, 224, 0.62);
+  --color-line:          rgba(234, 230, 224, 0.15);
+  --color-line-soft:     rgba(234, 230, 224, 0.08);
+  --color-accent:        var(--raw-yellow);   /* primary actions, links */
+  --color-accent-2:      var(--raw-orange);   /* highlights, active states, wipes */
+  --color-deep:          var(--raw-navy);     /* fills only, never text on black */
+  --color-on-accent:     var(--raw-black);    /* text on yellow/orange fills */
+  --color-on-deep:       var(--raw-white);    /* text on navy */
+  --color-link:          var(--raw-yellow);
+  --color-link-hover:    var(--raw-white);
+  --color-focus:         var(--raw-yellow);
+  --color-live:          var(--raw-orange);
+  --color-clash:         var(--raw-orange);
+
+  /* Overlays for photos and the header over the hero */
+  --shade-photo:  linear-gradient(0deg, rgba(12, 12, 18, 0.96) 0%, rgba(12, 12, 18, 0.55) 40%, rgba(12, 12, 18, 0) 75%);
+  --shade-hero:   linear-gradient(90deg, rgba(12, 12, 18, 0.94) 0%, rgba(12, 12, 18, 0.78) 45%, rgba(12, 12, 18, 0.2) 85%),
+                  linear-gradient(0deg, rgba(12, 12, 18, 1) 0%, rgba(12, 12, 18, 0) 40%);
+  --header-solid: rgba(12, 12, 18, 0.94);
+  --shadow-lift:  0 18px 40px rgba(0, 0, 0, 0.45);
+
+  /* ---------- Series markers (palette only, no new hues) ----------
+     Each series gets a fill, a text color and an optional ring.
+     Add a series: add three lines here and an entry in data/series.js. */
+  --series-formula-1-bg: var(--raw-orange); --series-formula-1-fg: var(--raw-black); --series-formula-1-ring: transparent;
+  --series-motogp-bg:    var(--raw-yellow); --series-motogp-fg:    var(--raw-black); --series-motogp-ring:    transparent;
+  --series-wec-bg:       var(--raw-white);  --series-wec-fg:       var(--raw-black); --series-wec-ring:       transparent;
+  --series-nascar-bg:    var(--raw-black);  --series-nascar-fg:    var(--raw-yellow); --series-nascar-ring:   var(--raw-yellow);
+  --series-imsa-bg:      var(--raw-black);  --series-imsa-fg:      var(--raw-orange); --series-imsa-ring:     var(--raw-orange);
+  --series-indycar-bg:   var(--raw-navy);   --series-indycar-fg:   var(--raw-white); --series-indycar-ring:   rgba(234, 230, 224, 0.15);
+  --series-all-bg:       transparent;       --series-all-fg:       rgba(234, 230, 224, 0.80); --series-all-ring: rgba(234, 230, 224, 0.15);
+  --series-other-bg:     var(--raw-black);  --series-other-fg:     var(--raw-white); --series-other-ring:     rgba(234, 230, 224, 0.62);
+
+  /* ---------- Type ---------- */
+  --font-head: "Oswald", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Inter", "Helvetica Neue", Arial, system-ui, sans-serif;
+
+  --text-xs:   0.75rem;   /* 12px: tags, credits */
+  --text-sm:   0.875rem;  /* 14px: meta, sources */
+  --text-base: 1.0625rem; /* 17px: body */
+  --text-lg:   1.1875rem; /* 19px: lead */
+  --text-xl:   1.5rem;    /* 24px: card titles */
+  --text-2xl:  clamp(1.75rem, 2.6vw, 2.25rem);   /* h2 */
+  --text-3xl:  clamp(2.5rem, 4.5vw, 4rem);       /* section display */
+  --text-page: clamp(3.5rem, 6.4vw, 7rem);       /* page titles */
+  --text-hero: clamp(4rem, 10vw, 9.75rem);       /* home hero */
+
+  /* ---------- Space, size, shape ---------- */
+  --space-1: 4px;  --space-2: 8px;  --space-3: 12px; --space-4: 16px;
+  --space-5: 24px; --space-6: 32px; --space-7: 48px; --space-8: 64px; --space-9: 96px;
+
+  --page-max: 1440px;
+  --gutter:   clamp(16px, 3.6vw, 64px);
+  --header-h: 72px;
+
+  --radius:    2px;   /* square, premium look (Evelin v5) */
+  --radius-lg: 2px;
+
+  /* ---------- Motion (Evelin's timing) ---------- */
+  --speed:      220ms;
+  --speed-slow: 450ms;
+  --ease:       cubic-bezier(0.2, 0.7, 0.2, 1);
+}

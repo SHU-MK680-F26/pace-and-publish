@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Weekend planner | Pace &amp; Publish</title>
+<meta name="description" content="Every session of the series you follow, for one week, in your own time zone, with clashes marked.">
+<meta name="theme-color" content="#0C0C12">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="assets/images/logo/logo-icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/components.css">
+</head>
+<body data-page="planner">
+<div id="site-header"></div>
+
+<main id="main">
+  <div class="wrap">
+    <header class="page-head">
+      <div class="stripe" aria-hidden="true"><span></span></div>
+      <h1 tabindex="-1">Weekend planner</h1>
+      <p class="page-intro">Pick the series you follow and your time zone. Every session that week shows in one list, in time order and in your own time, with clashes marked.</p>
+    </header>
+    <div class="planner-grid">
+      <form class="planner-form no-print" id="planner-form" onsubmit="return false;">
+        <div class="field"><span class="field-label">Series you follow</span><div id="planner-series"></div></div>
+        <div class="field"><label class="field-label" for="tz">Time zone</label><select class="select" id="tz"></select></div>
+        <div class="field"><label class="field-label" for="week">Week</label><select class="select" id="week"></select></div>
+        <button type="button" class="btn btn--ghost" id="print-btn">Print my week</button>
+      </form>
+      <section aria-labelledby="schedule-title">
+        <p class="print-only">Pace &amp; Publish · Weekend planner · A student project (MK-680), Sacred Heart University.</p>
+        <div class="section-head" style="margin-bottom:var(--space-3)"><h2 id="schedule-title" style="font-size:var(--text-2xl)">Your week</h2><p class="subtle" id="tz-line"></p></div>
+        <p class="countdown" id="next-up" aria-live="off" hidden></p>
+        <div id="schedule-out" aria-live="polite"></div>
+      </section>
+    </div>
+  </div>
+</main>
+
+<div id="site-footer"></div>
+<script src="data/series.js"></script>
+<script src="data/generated/schedule.js"></script>
+<script src="data/schedule-manual.js"></script>
+<script src="js/core.js"></script>
+<script src="js/layout.js"></script>
+<script src="js/features/schedule.js"></script>
+<script>PP.scheduleFeature.renderPlanner();</script>
+</body>
+</html>

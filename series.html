@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Series | Pace &amp; Publish</title>
+<meta name="description" content="Results, news, line-ups and schedules for one racing series, with the official source on every item.">
+<meta name="theme-color" content="#0C0C12">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="assets/images/logo/logo-icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/components.css">
+</head>
+<!-- One template for every series: series.html?id=formula-1, ?id=nascar, ... (ids from data/series.js) -->
+<body data-page="series" data-header-overlay>
+<div id="site-header"></div>
+
+<main id="main">
+  <div id="series-head"></div>
+  <div class="wrap" id="series-main"></div>
+</main>
+
+<div id="site-footer"></div>
+<script src="data/series.js"></script>
+<script src="data/photos.js"></script>
+<script src="data/news.js"></script>
+<script src="data/sources.js"></script>
+<script src="data/series-history.js"></script>
+<script src="data/generated/schedule.js"></script>
+<script src="data/generated/lineups.js"></script>
+<script src="data/generated/headlines.js"></script>
+<script src="data/schedule-manual.js"></script>
+<script src="js/core.js"></script>
+<script src="js/layout.js"></script>
+<script src="js/features/news.js"></script>
+<script src="js/features/schedule.js"></script>
+<script src="js/features/series-page.js"></script>
+<script>PP.seriesPage.render();</script>
+</body>
+</html>
