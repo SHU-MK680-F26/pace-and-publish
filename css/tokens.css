@@ -44,7 +44,7 @@
 
   /* Overlays for photos and the header over the hero */
   --shade-photo:  linear-gradient(0deg, rgba(12, 12, 18, 0.96) 0%, rgba(12, 12, 18, 0.55) 40%, rgba(12, 12, 18, 0) 75%);
-  --shade-hero:   linear-gradient(90deg, rgba(12, 12, 18, 0.92) 0%, rgba(12, 12, 18, 0.55) 45%, rgba(12, 12, 18, 0.1) 80%),
+  --shade-hero:   linear-gradient(90deg, rgba(12, 12, 18, 0.94) 0%, rgba(12, 12, 18, 0.78) 45%, rgba(12, 12, 18, 0.2) 85%),
                   linear-gradient(0deg, rgba(12, 12, 18, 1) 0%, rgba(12, 12, 18, 0) 40%);
   --header-solid: rgba(12, 12, 18, 0.94);
   --shadow-lift:  0 18px 40px rgba(0, 0, 0, 0.45);

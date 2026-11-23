@@ -232,6 +232,7 @@ figure { margin: 0; }
 
 /* ---------- Instagram card (Ben's follow card; feed plug-in slot) ---------- */
 .insta { display: grid; grid-template-columns: 1.2fr 1fr; background: var(--color-deep); color: var(--color-on-deep); }
+.insta > * { min-width: 0; }
 .insta-text { padding: var(--space-8) var(--space-7); }
 .insta-text h2 { font-size: clamp(2.6rem, 4.4vw, 5rem); line-height: 0.92; margin-bottom: var(--space-5); }
 .insta-text h2 span { color: var(--color-accent); }
@@ -520,6 +521,7 @@ mark { background: var(--color-accent); color: var(--color-on-accent); padding: 
   .tactic-num { justify-content: flex-start; padding: 18px 24px 0; font-size: 64px; box-shadow: none; background: transparent; }
   .tactic-body { padding: 16px 24px 28px; }
   .insta-text { padding: 32px 24px; }
+  .insta-text h2 { font-size: clamp(1.9rem, 8.4vw, 3rem); overflow-wrap: anywhere; }
   .insta-tiles { padding: 0 24px 32px; }
   .entry-num { display: none; }
   .entry { padding: 40px 0 44px; }
