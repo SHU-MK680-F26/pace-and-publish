@@ -5,7 +5,7 @@ Static site, no build step: plain HTML, CSS and classic `<script>` JavaScript (n
 ## Conventions
 
 - **Pages:** one `.html` per page at the root, built from `docs/page-template.html`. Header/nav/footer come from `js/layout.js`; register every page in its `NAV` list. Don't hand-write a header or footer.
-- **Data:** content lives in `data/*.js`, one file per type, assigned to `window.PP.<name>`. Never put content in feature code. Never edit `data/generated/` (written by `scripts/refresh.py`), except headline `caption` fields, which the refresh keeps. Hand-entered schedules go in `data/schedule-manual.js`.
+- **Data:** content lives in `data/*.js`, one file per type, assigned to `window.PP.<name>`. Never put content in feature code. Never edit `data/generated/` (written by `scripts/refresh.py`), except headline `caption` and `summary` fields, which the refresh keeps. Write them with `/caption-headlines` (`.claude/commands/caption-headlines.md`), never by guessing from a headline alone. Hand-entered schedules go in `data/schedule-manual.js`.
 - **Series:** always the long ids from `data/series.js` (`formula-1`, `motogp`, `wec`, `nascar`, `imsa`, `indycar`). A new series = registry entry + tag tokens in `css/tokens.css` + `.tag--<id>` in `css/components.css`.
 - **Styles:** components use semantic tokens only (`--color-*`, `--space-*`, `--text-*`, `--speed`, `--ease`), never raw hex or `--raw-*`. Breakpoints: `max-width: 599px` and `max-width: 1023px`. Every animation must stop under `prefers-reduced-motion`.
 - **Photos:** every image is an entry in `data/photos.js` with author, license and source; reference it by id. Files go in `assets/images/<photos|tracks|drivers|team>/`, named `series-place-year`, ≤ 2000 px.

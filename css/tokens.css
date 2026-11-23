@@ -79,7 +79,7 @@
   --space-1: 4px;  --space-2: 8px;  --space-3: 12px; --space-4: 16px;
   --space-5: 24px; --space-6: 32px; --space-7: 48px; --space-8: 64px; --space-9: 96px;
 
-  --page-max: 1440px;
+  --page-max: 1680px;   /* Ben's content width: less empty margin on wide screens */
   --gutter:   clamp(16px, 3.6vw, 64px);
   --header-h: 72px;
 

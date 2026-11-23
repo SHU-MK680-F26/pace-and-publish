@@ -60,6 +60,6 @@ window.PP.series = [
     id: "indycar", short: "IndyCar", name: "NTT IndyCar Series",
     desc: "The top level of American single-seater racing. Its biggest event is the Indianapolis 500, first held in 1911.",
     site: "indycar.com", siteUrl: "https://www.indycar.com",
-    photo: null, fetcher: "indycar"
+    photo: "indycar-indianapolis-2023", fetcher: "indycar"
   }
 ];

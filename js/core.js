@@ -104,22 +104,29 @@
   };
   U.followed = function (id) { var m = U.mySeries(); return !m || m.indexOf(id) !== -1; };
 
-  // A row of series toggles bound to "my series". onChange(ids) runs after each change.
+  /* A row of series filter buttons bound to "my series", used on Home, News, Calendar and Planner.
+     "All" comes first and is selected by default. Picking a series shows just that one; more
+     series can be added or removed in any combination. "All" (or removing the last series, or
+     picking every series) goes back to everything. onChange(ids) runs after each change. */
   U.seriesPicker = function (onChange) {
     var wrap = U.el("div", { className: "filter", role: "group", "aria-label": "Series you follow" });
     function sync() {
       var m = U.mySeries();
       U.all("button", wrap).forEach(function (b) {
-        b.setAttribute("aria-pressed", String(!m || m.indexOf(b.value) !== -1));
+        b.setAttribute("aria-pressed", String(b.value === "all" ? !m : !!m && m.indexOf(b.value) !== -1));
       });
     }
+    var all = U.el("button", { type: "button", value: "all", "aria-pressed": "true", title: "Show every series", text: "All" });
+    all.addEventListener("click", function () { U.setMySeries(null); });
+    wrap.appendChild(all);
     (PP.series || []).forEach(function (s) {
-      var b = U.el("button", { type: "button", value: s.id, "aria-pressed": "true", title: s.name, text: s.short });
+      // tag--<id> supplies the series' tag colors, used when the button is selected
+      var b = U.el("button", { type: "button", value: s.id, className: "filter-series tag--" + s.id, "aria-pressed": "false", title: s.name, text: s.short });
       b.addEventListener("click", function () {
-        var m = U.mySeries() || U.seriesIds().slice();
-        var i = m.indexOf(s.id);
-        if (i === -1) m.push(s.id); else m.splice(i, 1);
-        if (!m.length) m = U.seriesIds().slice(); // nothing selected means everything
+        var m = U.mySeries();
+        if (!m) m = [s.id];                       // from "All": show just this series
+        else if (m.indexOf(s.id) === -1) m.push(s.id);
+        else m.splice(m.indexOf(s.id), 1);        // none left means "All" again
         U.setMySeries(m);
       });
       wrap.appendChild(b);

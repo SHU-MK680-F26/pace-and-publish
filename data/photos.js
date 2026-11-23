@@ -79,6 +79,19 @@ window.PP.photos = {
     "sourceUrl": "https://commons.wikimedia.org/wiki/File:IMSA_Sebring_12H_2024_-i---i-_(53909252177).jpg",
     "sourceSite": "Wikimedia Commons"
   },
+  "indycar-indianapolis-2023": {
+    "src": "assets/images/photos/indycar-indianapolis-2023.jpg",
+    "width": 2000,
+    "height": 1333,
+    "alt": "Pato O'Ward's number 5 Arrow McLaren IndyCar, an open-wheel car with a cockpit wind screen, at speed beside the wall at Indianapolis Motor Speedway during the 2023 Indianapolis 500.",
+    "caption": "2023 Indianapolis 500 (file photo)",
+    "author": "350z33",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:2023Indy500oward.jpg",
+    "sourceSite": "Wikimedia Commons",
+    "changes": "resized"
+  },
   "driver-george-russell": {
     "src": "assets/images/drivers/driver-george-russell.jpg",
     "width": 800,

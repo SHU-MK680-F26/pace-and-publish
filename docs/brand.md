@@ -31,7 +31,7 @@ Series are marked by text tags in palette colors only (no extra hues): F1 orange
 
 ## Logo
 
-Sanith's car badge, recolored: a black car with orange wheels in a yellow badge, with "PACE & PUBLISH" in Oswald. On hover or focus the car drives off and loops back. Favicon: `assets/images/logo/logo-icon.svg`.
+Sanith's car badge, recolored: a white car and white motion lines, with yellow wheels, in an orange badge; "PACE & PUBLISH" in Oswald, with the "&" in yellow. On hover or focus the car drives off and loops back. Favicon: `assets/images/logo/logo-icon.svg`.
 
 ## Voice (Miranda's voice guide)
 
