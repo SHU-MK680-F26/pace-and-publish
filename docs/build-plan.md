@@ -1,6 +1,6 @@
 # Pace & Publish: unified site build plan
 
-Status: **draft for approval** · 2026-11-23
+Status: **approved 2026-11-23, built** · see docs/decisions.md for what shipped and open items
 
 This plan merges the four team sites (`brand-site-ben`, `-evelin`, `-miranda`, `-sanith`) into one static site in this repository. It applies the seven decisions agreed on 2026-11-23 (summarized in §1) and covers six series: **F1, MotoGP, WEC, NASCAR, IMSA and IndyCar**.
 

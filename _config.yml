@@ -1,0 +1,7 @@
+# GitHub Pages: publish the site files only.
+exclude:
+  - archive/
+  - docs/
+  - scripts/
+  - README.md
+  - CLAUDE.md
